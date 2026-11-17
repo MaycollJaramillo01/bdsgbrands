@@ -1,0 +1,1063 @@
+{
+ "returns": {
+  "title": "Return & Refund Policy",
+  "effective": "August 21, 2026",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "This Return & Refund Policy applies to eligible BDSG Products purchased directly from BDSG Brands, LLC or through a BDSG-operated current or future brand storefront where this Policy is presented as applicable. Purchases from an independent BDSG Partner are generally handled by that independent seller, subject to applicable law, unless BDSG expressly assumes responsibility for the transaction or a product-quality matter."
+   },
+   {
+    "t": "h2",
+    "text": "1. Retail and Greatness Member Returns"
+   },
+   {
+    "t": "p",
+    "text": "Retail customers and Greatness Members follow the same ordinary product-return rules. Membership status does not extend the return window or create additional product-return privileges."
+   },
+   {
+    "t": "li",
+    "label": "Return Window:",
+    "text": "15 calendar days from the purchase date."
+   },
+   {
+    "t": "li",
+    "label": "Condition Requirement:",
+    "text": "Product must be unopened and in its original, undamaged packaging."
+   },
+   {
+    "t": "li",
+    "label": "Opened Product:",
+    "text": "Opened cosmetic and personal care products are not eligible for ordinary preference-based returns or exchanges."
+   },
+   {
+    "t": "li",
+    "label": "Proof of Purchase:",
+    "text": "Order confirmation, receipt, or Member account record is required."
+   },
+   {
+    "t": "li",
+    "label": "Return Shipping:",
+    "text": "Customer is responsible for return shipping unless the product was defective or BDSG shipped the wrong item, or applicable law requires otherwise."
+   },
+   {
+    "t": "li",
+    "label": "Refund Processing:",
+    "text": "Approved Retail or Greatness Member product refunds are ordinarily processed within 7 to 10 business days after BDSG receives and inspects the authorized return."
+   },
+   {
+    "t": "p",
+    "text": "These ordinary return limits do not eliminate a remedy that applicable law requires for a defective, unsafe, incorrectly shipped, or otherwise legally nonconforming product."
+   },
+   {
+    "t": "h2",
+    "text": "2. Damaged, Incorrect, Defective, Leaking, or Nonconforming Products"
+   },
+   {
+    "t": "p",
+    "text": "Product-quality and fulfillment problems are handled separately from ordinary preference-based returns. BDSG may request photographs, order information, lot or batch information, or return of the product to investigate."
+   },
+   {
+    "t": "p",
+    "text": "Customers should contact BDSG promptly and may be asked to provide the order number, photographs, product name, lot or batch code, description of the issue, and other information reasonably necessary to investigate."
+   },
+   {
+    "t": "p",
+    "text": "Depending on the circumstances, BDSG may replace the product, issue a refund, provide another appropriate remedy, request return of the product, or preserve the product for safety investigation."
+   },
+   {
+    "t": "h2",
+    "text": "3. Adverse Reactions and Safety Complaints"
+   },
+   {
+    "t": "p",
+    "text": "If you experience a significant adverse reaction, discontinue use and contact BDSG promptly. Seek appropriate medical care when necessary. BDSG may request information needed to evaluate product safety and meet applicable reporting obligations."
+   },
+   {
+    "t": "p",
+    "text": "A safety complaint is not treated merely as a preference-based return and may be handled under separate safety and regulatory procedures."
+   },
+   {
+    "t": "h2",
+    "text": "4. Refund Timing"
+   },
+   {
+    "t": "p",
+    "text": "Approved Retail and Greatness Member product refunds are ordinarily processed within 7 to 10 business days after receipt and inspection of the authorized return. Approved Partner/Bulk refunds are ordinarily processed within 10 to 14 business days after receipt, inspection, and applicable restocking-fee deduction."
+   },
+   {
+    "t": "p",
+    "text": "Your bank or payment provider may require additional time before the credit appears. Unless required by law or otherwise stated, refunds are returned to the original payment method."
+   },
+   {
+    "t": "h2",
+    "text": "5. Shipping Charges"
+   },
+   {
+    "t": "p",
+    "text": "Original shipping charges and return shipping charges are generally non-refundable for preference-based returns unless BDSG states otherwise. BDSG will address reasonable shipping costs associated with verified BDSG fulfillment errors or verified defective products as appropriate."
+   },
+   {
+    "t": "h2",
+    "text": "6. Greatness Membership Fees"
+   },
+   {
+    "t": "h3",
+    "text": "Initial Registration"
+   },
+   {
+    "t": "p",
+    "text": "The $55 Greatness registration fee is refundable only if BDSG receives a written cancellation request within 24 hours after the timestamp of enrollment. If timely cancelled and refunded, the membership and associated benefits terminate immediately."
+   },
+   {
+    "t": "h3",
+    "text": "After 24 Hours"
+   },
+   {
+    "t": "p",
+    "text": "The initial registration fee is non-refundable and is not prorated, except where applicable law requires otherwise. A cancellation submitted after the initial refund window may stop future renewal but does not create a refund for the current paid term."
+   },
+   {
+    "t": "h3",
+    "text": "Annual Renewal"
+   },
+   {
+    "t": "p",
+    "text": "A cancellation request must be received at least 24 hours before the scheduled renewal charge and no later than 8:00 PM U.S. Eastern Time (6:00 PM Mountain Time) on the cancellation-deadline date identified in BDSG's renewal notice."
+   },
+   {
+    "t": "h3",
+    "text": "How to Cancel"
+   },
+   {
+    "t": "p",
+    "text": "Use the Member account portal or the Greatness Membership cancellation method identified on bdsgbrands.com. BDSG may also provide an email, web form, or other written electronic method."
+   },
+   {
+    "t": "h3",
+    "text": "Missed Renewal Deadline"
+   },
+   {
+    "t": "p",
+    "text": "If the cancellation deadline is missed, the renewal may process automatically and the annual renewal fee is non-refundable. No partial-year refunds or prorated credits are provided, except where applicable law requires otherwise."
+   },
+   {
+    "t": "p",
+    "text": "Utah Notice: For memberships subject to Utah Code Title 13, Chapter 70, BDSG will provide a clear renewal notice at least 30 and not more than 60 days before renewal stating the renewal date, total renewal cost, cancellation options, and applicable cancellation deadline."
+   },
+   {
+    "t": "h2",
+    "text": "7. Partner/Bulk Returns"
+   },
+   {
+    "t": "p",
+    "text": "Partner/Bulk purchases are subject to strict commercial return terms:"
+   },
+   {
+    "t": "li",
+    "label": "Return Window:",
+    "text": "Return request must be submitted within 10 calendar days from the purchase date."
+   },
+   {
+    "t": "li",
+    "label": "Authorization Required:",
+    "text": "Written authorization from BDSG is required before any Partner/Bulk product is shipped back. Unauthorized returns may be refused."
+   },
+   {
+    "t": "li",
+    "label": "Condition Requirement:",
+    "text": "Product must be unopened, untouched, in original resalable condition, and free from damage to outer packaging, labeling, or seals."
+   },
+   {
+    "t": "li",
+    "label": "Restocking Fee:",
+    "text": "A 15% restocking fee applies to every approved Partner/Bulk return and is deducted from the refund, except where applicable law requires otherwise."
+   },
+   {
+    "t": "li",
+    "label": "Defect or Damage Claims:",
+    "text": "Report in writing within 5 calendar days after delivery and include photographs or other reasonable evidence."
+   },
+   {
+    "t": "li",
+    "label": "Non-Returnable Items:",
+    "text": "Opened, relabeled, repackaged, altered, expired/past-best-by, or non-original-packaging product is not eligible for return, except where applicable law requires a remedy."
+   },
+   {
+    "t": "li",
+    "label": "No Market-Based Returns:",
+    "text": "No returns for slow sales, excess inventory, seasonal factors, changed demand, or market conditions."
+   },
+   {
+    "t": "li",
+    "label": "Return Shipping:",
+    "text": "Partner pays return shipping unless BDSG expressly agrees otherwise or applicable law requires otherwise."
+   },
+   {
+    "t": "li",
+    "label": "Refund Processing:",
+    "text": "Approved refunds are ordinarily processed within 10 to 14 business days after BDSG receives and inspects the authorized return and applies the 15% restocking fee."
+   },
+   {
+    "t": "p",
+    "text": "If this Policy conflicts with the BDSG Greatness Program & Partner Agreement concerning a Partner/Bulk transaction, the Greatness Program & Partner Agreement controls."
+   },
+   {
+    "t": "h2",
+    "text": "8. Suspected Fraud or Abuse"
+   },
+   {
+    "t": "p",
+    "text": "BDSG may deny or investigate return requests reasonably associated with fraud, product substitution, altered products, counterfeit products, abusive repeat returns, false claims, transaction manipulation, or attempts to return products not originally sold through the asserted BDSG Brand or authorized channel. Nothing in this section limits a non-waivable consumer right."
+   },
+   {
+    "t": "h2",
+    "text": "9. Purchases From Independent Partners or Other Sellers"
+   },
+   {
+    "t": "p",
+    "text": "If you purchased from an independent BDSG Partner, that Partner is generally the independent retail seller responsible for the retail transaction and its applicable return obligations. BDSG remains responsible for obligations that applicable law independently places on BDSG regarding product safety, manufacturing, labeling, or other non-transferable matters."
+   },
+   {
+    "t": "h2",
+    "text": "10. Contact"
+   },
+   {
+    "t": "p",
+    "text": "For product returns, refund requests, or product problems, use the BDSG Contact or Returns process at bdsgbrands.com and include available order information. Greatness membership cancellations are governed by Section 6."
+   }
+  ]
+ },
+ "terms": {
+  "title": "Terms of Use & Sale",
+  "effective": "August 21, 2026",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "These Terms of Use & Sale (\"Terms\") govern access to and use of the BDSG Brands website and ordinary direct-to-consumer purchases made directly from BDSG Brands, LLC (\"BDSG,\" \"we,\" \"us,\" or \"our\")."
+   },
+   {
+    "t": "h2",
+    "text": "1. Acceptance and Electronic Assent"
+   },
+   {
+    "t": "p",
+    "text": "By creating an account, placing an order, or affirmatively accepting these Terms at checkout, you agree to these Terms. Where BDSG uses a checkbox or other electronic acceptance mechanism, BDSG may retain evidence of the version accepted, date and time, order or account identifier, acceptance record, and available device, IP, or transaction information."
+   },
+   {
+    "t": "p",
+    "text": "Merely visiting the website does not by itself constitute acceptance of the Binding Arbitration Agreement where applicable law requires affirmative assent."
+   },
+   {
+    "t": "h2",
+    "text": "2. Eligibility"
+   },
+   {
+    "t": "p",
+    "text": "You must be at least 18 years old or the age of legal majority in your jurisdiction to create an account or make a purchase independently. Minors may use BDSG products under the supervision and responsibility of a parent or legal guardian where appropriate."
+   },
+   {
+    "t": "h2",
+    "text": "3. Products and Product Information"
+   },
+   {
+    "t": "p",
+    "text": "BDSG sells cosmetic and personal care products. We attempt to describe products, ingredients, sizes, packaging, appearance, pricing, and availability accurately. Packaging, ingredients, appearance, or specifications may change, and electronic images may not reproduce colors or textures exactly."
+   },
+   {
+    "t": "p",
+    "text": "Always review the ingredient list, directions, warnings, lot information, and other labeling on the product actually received, particularly if you have allergies or sensitivities."
+   },
+   {
+    "t": "h2",
+    "text": "4. Cosmetic and Health Disclaimer"
+   },
+   {
+    "t": "p",
+    "text": "BDSG products are cosmetic products unless expressly stated otherwise. They are not intended to diagnose, treat, cure, or prevent disease. Website content, product descriptions, educational materials, social-media content, and customer service information are not medical advice."
+   },
+   {
+    "t": "p",
+    "text": "Individual experiences may vary. If you have a serious skin condition, known allergy or sensitivity, are receiving medical treatment, or are uncertain whether a product is appropriate for you, consult an appropriate healthcare professional. Discontinue use if significant irritation or an adverse reaction occurs."
+   },
+   {
+    "t": "h2",
+    "text": "5. Orders and Acceptance"
+   },
+   {
+    "t": "p",
+    "text": "Submitting an order does not guarantee acceptance. BDSG may refuse, limit, hold, or cancel an order for legitimate reasons including:"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Product availability or quantity limits"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Pricing, listing, or system errors"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Suspected fraud, unauthorized payment, identity misuse, or account manipulation"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Promotion abuse, purchase-limit circumvention, or excessive return activity"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Suspected unauthorized resale or marketplace activity"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Shipping restrictions, security concerns, or legal requirements"
+   },
+   {
+    "t": "p",
+    "text": "If BDSG cancels an accepted order after collecting payment, BDSG will refund the applicable amount."
+   },
+   {
+    "t": "h2",
+    "text": "6. Pricing, Taxes, and Promotions"
+   },
+   {
+    "t": "p",
+    "text": "Prices are displayed in U.S. dollars unless otherwise indicated. Prices, promotions, discounts, bundles, shipping offers, and availability may change prospectively. The price displayed at checkout generally governs the transaction unless there is an obvious pricing or technical error."
+   },
+   {
+    "t": "p",
+    "text": "Applicable taxes, shipping charges, and other charges will be disclosed during checkout as required. Promotional offers may have separate eligibility, expiration, quantity, channel, or combination restrictions. Unless a different offer is displayed at checkout, standard retail free shipping applies to qualifying direct-to-consumer orders of $70 or more."
+   },
+   {
+    "t": "h2",
+    "text": "7. Payments and Fraud Prevention"
+   },
+   {
+    "t": "p",
+    "text": "By providing a payment method, you represent that you are authorized to use it, the information provided is accurate, and you authorize charges associated with the transaction. Payments may be processed by third-party payment providers."
+   },
+   {
+    "t": "p",
+    "text": "BDSG may use fraud-prevention, payment-risk, address-verification, identity-verification, and transaction-monitoring tools and may delay, decline, or cancel transactions reasonably identified as suspicious or unauthorized."
+   },
+   {
+    "t": "h2",
+    "text": "8. Shipping and Delivery"
+   },
+   {
+    "t": "p",
+    "text": "Delivery dates are estimates unless BDSG expressly guarantees otherwise. BDSG is not responsible for delays caused by circumstances outside its reasonable control, including carrier delays, weather, governmental actions, customs, transportation interruptions, or inaccurate addresses supplied by the customer."
+   },
+   {
+    "t": "p",
+    "text": "Customers are responsible for providing complete and accurate shipping information."
+   },
+   {
+    "t": "h2",
+    "text": "9. Returns, Refunds, and Product Problems"
+   },
+   {
+    "t": "p",
+    "text": "Returns and refunds are governed by the BDSG Return & Refund Policy, which is incorporated into these Terms. Ordinary Retail and Greatness Member product returns are generally limited to eligible unopened products requested within 15 calendar days from the purchase date."
+   },
+   {
+    "t": "p",
+    "text": "Damaged, defective, incorrect, leaking, contaminated, or materially nonconforming products are handled separately and are not denied solely because the product was opened in the ordinary course of discovering the issue."
+   },
+   {
+    "t": "h2",
+    "text": "10. Customer Accounts"
+   },
+   {
+    "t": "p",
+    "text": "You are responsible for maintaining accurate account information and protecting account credentials. Notify BDSG promptly if you believe an account has been compromised. BDSG may suspend or terminate accounts reasonably associated with fraud, security threats, deliberate abuse, or repeated violations of these Terms."
+   },
+   {
+    "t": "h2",
+    "text": "11. Reviews and User Content"
+   },
+   {
+    "t": "p",
+    "text": "You retain ownership of original content you submit. By voluntarily submitting a review, photograph, video, testimonial, comment, or other content for publication or promotional use, you grant BDSG a nonexclusive, worldwide, royalty-free license to use, reproduce, display, distribute, adapt, and promote that content in connection with BDSG business, subject to applicable law and any separate written agreement."
+   },
+   {
+    "t": "h2",
+    "text": "12. Intellectual Property"
+   },
+   {
+    "t": "p",
+    "text": "BDSG trademarks, logos, product names, packaging, designs, graphics, photographs, video, copy, website content, and other brand materials are owned by or licensed to BDSG. Purchasing a product does not grant a right to reproduce, alter, or commercially exploit BDSG intellectual property."
+   },
+   {
+    "t": "h2",
+    "text": "13. Prohibited Uses"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Violate applicable law or facilitate fraud"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Submit knowingly false claims or intentionally false information"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Create fake accounts or impersonate another person"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Manipulate purchases, pricing, promotions, returns, or rewards"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Submit fraudulent or knowingly false chargebacks"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Attempt unauthorized access, introduce malicious code, or interfere with security"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Scrape or harvest data unlawfully"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Misrepresent affiliation with BDSG or use BDSG intellectual property without authorization"
+   },
+   {
+    "t": "h2",
+    "text": "14. Billing Disputes and Chargebacks"
+   },
+   {
+    "t": "p",
+    "text": "BDSG encourages customers to contact BDSG promptly regarding billing, delivery, refund, or transaction concerns so that BDSG has an opportunity to investigate and resolve the issue. Nothing in these Terms eliminates a chargeback, billing-error, or payment-dispute right that applicable law or payment-network rules do not permit the parties to waive."
+   },
+   {
+    "t": "h2",
+    "text": "15. Third-Party Services"
+   },
+   {
+    "t": "p",
+    "text": "The website may use or link to services operated by payment processors, shipping carriers, analytics providers, advertising providers, social platforms, or other third parties. Their services may be governed by separate terms and privacy practices. BDSG is not responsible for third-party services outside its control."
+   },
+   {
+    "t": "h2",
+    "text": "16. Disclaimer of Warranties"
+   },
+   {
+    "t": "p",
+    "text": "To the maximum extent permitted by law, the BDSG website and online services are provided \"as is\" and \"as available.\" BDSG does not warrant that online services will always be uninterrupted, error-free, or completely secure. This section does not DISCLAIM an express product warranty or non-waivable consumer right."
+   },
+   {
+    "t": "h2",
+    "text": "17. Limitation of Liability"
+   },
+   {
+    "t": "p",
+    "text": "To the maximum extent permitted by law, BDSG will not be liable for indirect, incidental, special, exemplary, punitive, or consequential damages arising from website use or ordinary contractual services. For claims that may lawfully be subject to a contractual cap, BDSG's aggregate contractual liability will not exceed the amount paid to BDSG for the product or service giving rise to the claim."
+   },
+   {
+    "t": "h2",
+    "text": "18. Indemnification"
+   },
+   {
+    "t": "p",
+    "text": "To the maximum extent permitted by law, you agree to indemnify and hold harmless BDSG Brands, LLC and its affiliates, owners, members, managers, officers, employees, and agents from third-party claims, losses, liabilities, reasonable attorneys' fees, penalties, damages, and costs to the extent caused by or arising from your use of the website, purchase of products, violation of these Terms, or violation of applicable law."
+   },
+   {
+    "t": "h2",
+    "text": "19. Binding Arbitration Agreement"
+   },
+   {
+    "t": "p",
+    "text": "Except for the exceptions below, you and BDSG agree that disputes arising out of or relating to these Terms, website use, or product purchases will be resolved through binding individual arbitration rather than a lawsuit in court."
+   },
+   {
+    "t": "p",
+    "text": "The Federal Arbitration Act governs interpretation and enforcement of this Arbitration Agreement to the extent applicable."
+   },
+   {
+    "t": "h2",
+    "text": "20. Class-Action Waiver"
+   },
+   {
+    "t": "p",
+    "text": "To the maximum extent permitted by law, you and BDSG waive the right to have an arbitrable dispute decided by a judge or jury and agree that arbitrable claims may be brought only on an individual basis, not as a class, collective, representative, or consolidated action."
+   },
+   {
+    "t": "h2",
+    "text": "21. Arbitration Opt-Out"
+   },
+   {
+    "t": "p",
+    "text": "You may opt out of this Arbitration Agreement within 30 days after first affirmatively accepting it using the opt-out method provided by BDSG. Opting out does not cancel your account or any substantive provision other than the Arbitration Agreement."
+   },
+   {
+    "t": "h2",
+    "text": "22. Governing Law and Forum"
+   },
+   {
+    "t": "p",
+    "text": "This Agreement is governed by Utah law and applicable federal law, without regard to conflict-of-law principles. For disputes not subject to arbitration and not properly brought in small claims court, the parties consent to an appropriate state or federal court located in Utah."
+   },
+   {
+    "t": "h2",
+    "text": "23. Changes to These Terms"
+   },
+   {
+    "t": "p",
+    "text": "BDSG may revise these Terms prospectively. Material changes may require renewed affirmative acceptance before you continue to use affected services. BDSG may preserve prior versions to establish which version governed a particular transaction."
+   },
+   {
+    "t": "h2",
+    "text": "24. Severability"
+   },
+   {
+    "t": "p",
+    "text": "If a provision is invalid or unenforceable, it will be limited or severed to the minimum extent necessary and the remainder will remain effective where legally permitted."
+   },
+   {
+    "t": "h2",
+    "text": "25. Contact"
+   },
+   {
+    "t": "p",
+    "text": "BDSG Brands, LLC West Jordan, Utah 84084 Website: bdsgbrands.com"
+   }
+  ]
+ },
+ "privacy": {
+  "title": "Privacy Policy",
+  "effective": "August 21, 2026",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "BDSG Brands, LLC (\"BDSG,\" \"we,\" \"us,\" or \"our\") respects your privacy. This Privacy Policy explains how we collect, use, disclose, retain, and protect personal information when you visit bdsgbrands.com, purchase directly from BDSG, create an account, enroll in Greatness, participate in referrals, qualify for Partner/Bulk transactions, communicate with us, or otherwise interact with BDSG."
+   },
+   {
+    "t": "h2",
+    "text": "1. Information We Collect"
+   },
+   {
+    "t": "h3",
+    "text": "Information You Provide"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Name, email address, telephone number, billing and shipping address"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Account credentials and account preferences"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Order, return, refund, and purchase history"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Greatness membership information and renewal status"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Referral activity and reward information"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Partner status, resale documentation, tax or business information where applicable"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Customer service, complaint, product-safety, review, survey, or other communications"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Marketing preferences and promotion entries"
+   },
+   {
+    "t": "h3",
+    "text": "Payment Information"
+   },
+   {
+    "t": "p",
+    "text": "Payments are generally processed through third-party payment processors. BDSG ordinarily does not receive or store a complete payment-card number. We may receive limited transaction information such as payment status, payment type, billing information, tokenized identifiers, or portions of a card identifier when needed for payment, refunds, disputes, or fraud prevention."
+   },
+   {
+    "t": "h3",
+    "text": "Information Collected Automatically"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "IP address and approximate location derived from IP"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Browser, operating system, device type, and device identifiers"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Pages, products, links, and features viewed or used"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Shopping cart, checkout, and conversion activity"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Referring pages, campaign information, and advertising attribution"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Date, time, session, security, and diagnostic information"
+   },
+   {
+    "t": "p",
+    "text": "We may collect this information using cookies, pixels, tags, local storage, software development kits, and similar technologies. See the Cookie Policy for more information."
+   },
+   {
+    "t": "h2",
+    "text": "2. How We Use Personal Information"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Process, fulfill, ship, and support orders"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Process payments, refunds, fraud reviews, chargebacks, and transaction disputes"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Create and manage accounts"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Administer Greatness membership and automatic renewal"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Apply Member and Partner/Bulk pricing"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Administer referral incentives and detect referral abuse"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Verify Partner/Bulk eligibility and administer resale compliance where applicable"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Provide customer service and product-safety support"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Send transactional and service communications"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Send marketing communications where permitted"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Personalize shopping experiences and product recommendations"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Measure website performance, advertising, and customer engagement"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Detect, investigate, and prevent fraud, security incidents, counterfeiting, or abuse"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Maintain product traceability, complaint, legal, tax, accounting, and compliance records"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Establish, exercise, or defend legal claims"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Comply with applicable legal and regulatory obligations"
+   },
+   {
+    "t": "p",
+    "text": "We may also use information in aggregated or deidentified form where it is not reasonably capable of identifying an individual."
+   },
+   {
+    "t": "h2",
+    "text": "3. How We Disclose Personal Information"
+   },
+   {
+    "t": "h3",
+    "text": "Service Providers"
+   },
+   {
+    "t": "p",
+    "text": "We may disclose information to vendors that provide ecommerce hosting, payments, fraud prevention, shipping, fulfillment, warehousing, customer service, email or SMS communications, analytics, advertising, cybersecurity, accounting, legal, or information-technology services."
+   },
+   {
+    "t": "h3",
+    "text": "Advertising and Analytics Partners"
+   },
+   {
+    "t": "p",
+    "text": "We may use advertising and analytics technologies to measure campaigns, understand website usage, build audiences, attribute purchases, or deliver advertising. Depending on applicable state law, certain disclosures through advertising technologies may be considered a \"sale,\" \"sharing,\" or targeted advertising even when BDSG does not receive money for the information. Where required, BDSG will provide applicable opt-out choices."
+   },
+   {
+    "t": "h3",
+    "text": "Partners and Product-Safety Matters"
+   },
+   {
+    "t": "p",
+    "text": "Where reasonably necessary to investigate a product complaint, safety issue, recall, counterfeit concern, or transaction dispute, BDSG may exchange relevant information with an independent Partner, manufacturer, laboratory, insurer, professional adviser, carrier, regulator, or other appropriate party, subject to applicable law."
+   },
+   {
+    "t": "h3",
+    "text": "Legal and Business Transactions"
+   },
+   {
+    "t": "p",
+    "text": "We may disclose information to comply with law or legal process; respond to lawful governmental requests; investigate fraud or illegal activity; protect BDSG, customers, or others; enforce agreements; or in connection with a merger, acquisition, financing, restructuring, asset sale, or similar business transaction."
+   },
+   {
+    "t": "h2",
+    "text": "4. BDSG Does Not Sell Personal Information for Money"
+   },
+   {
+    "t": "p",
+    "text": "BDSG does not sell customer personal information in exchange for monetary payment. Certain advertising or analytics disclosures may nevertheless fall within broader state-law definitions of sale, sharing, or targeted advertising. Where such laws apply, BDSG will provide applicable privacy choices."
+   },
+   {
+    "t": "h2",
+    "text": "5. Cookies and Similar Technologies"
+   },
+   {
+    "t": "p",
+    "text": "BDSG uses cookies and similar technologies for essential website operation, security, cart and account functions, analytics, personalization, marketing measurement, and advertising. See the BDSG Cookie Policy for categories and available controls."
+   },
+   {
+    "t": "h2",
+    "text": "6. Email and Text Marketing"
+   },
+   {
+    "t": "p",
+    "text": "Promotional email recipients may unsubscribe using the link in the message. Unsubscribing from marketing does not prevent transactional communications concerning orders, memberships, payments, security, recalls, safety, or other service matters."
+   },
+   {
+    "t": "p",
+    "text": "If BDSG offers SMS marketing, enrollment will be voluntary and subject to the consent terms presented at enrollment. Consent to marketing text messages is not required as a condition of purchasing BDSG products. Opt-out instructions will be provided with messages as required."
+   },
+   {
+    "t": "h2",
+    "text": "7. Greatness, Referral, and Partner Information"
+   },
+   {
+    "t": "p",
+    "text": "When you participate in Greatness, referral incentives, or Partner/Bulk purchasing, BDSG may collect and maintain information reasonably necessary to verify membership status, apply pricing, track qualifying referrals, calculate and reverse rewards, prevent self-referral or fraud, preserve evidence of agreement acceptance, administer resale restrictions, maintain tax records, and investigate disputes."
+   },
+   {
+    "t": "h2",
+    "text": "8. Product Complaints and Adverse Events"
+   },
+   {
+    "t": "p",
+    "text": "If you report a product complaint or adverse event, BDSG may collect information about the product, lot code, purchase, symptoms or reaction, photographs, communications, and other information reasonably necessary to investigate, fulfill legal reporting duties, protect consumers, or defend legal claims. Please do not submit unrelated medical records or highly sensitive information unless specifically requested and necessary."
+   },
+   {
+    "t": "h2",
+    "text": "9. Data Retention"
+   },
+   {
+    "t": "p",
+    "text": "BDSG retains personal information for as long as reasonably necessary for the purposes described in this Policy, including order fulfillment, membership administration, fraud and chargeback prevention, product traceability, tax and accounting, warranty and customer service, legal claims, safety investigations, and regulatory requirements."
+   },
+   {
+    "t": "p",
+    "text": "Retention periods vary by category. BDSG may retain agreement-acceptance records, transaction records, product-safety and adverse-event records, and other legal/compliance records for longer periods where reasonably necessary or legally required."
+   },
+   {
+    "t": "h2",
+    "text": "10. Security"
+   },
+   {
+    "t": "p",
+    "text": "BDSG uses reasonable administrative, technical, and organizational safeguards designed to protect personal information. No online system or storage method can be guaranteed completely secure. Customers are responsible for protecting account credentials and should notify BDSG promptly if they believe an account has been compromised."
+   },
+   {
+    "t": "h2",
+    "text": "11. Your Privacy Rights"
+   },
+   {
+    "t": "p",
+    "text": "Depending on your state of residence, the size and activities of BDSG, and whether an applicable privacy law covers the processing, you may have rights to request access, correction, deletion, or portability of certain personal information; opt out of certain targeted advertising, sales, or sharing; withdraw consent where applicable; or appeal certain privacy-request decisions."
+   },
+   {
+    "t": "p",
+    "text": "These rights may be subject to identity verification, legal exceptions, and statutory applicability thresholds. BDSG will not unlawfully discriminate against a consumer for exercising an applicable privacy right."
+   },
+   {
+    "t": "p",
+    "text": "To submit a privacy request, use the BDSG Contact or Privacy Request process at bdsgbrands.com and identify the request as a privacy request."
+   },
+   {
+    "t": "h2",
+    "text": "12. Browser-Based Privacy Signals"
+   },
+   {
+    "t": "p",
+    "text": "Where required by applicable law and technically supported, BDSG will process legally recognized browser-based opt-out preference signals, such as Global Privacy Control, in accordance with applicable law and our technology configuration."
+   },
+   {
+    "t": "h2",
+    "text": "13. Children's Privacy"
+   },
+   {
+    "t": "p",
+    "text": "BDSG online services are not directed to children under 13, and BDSG does not knowingly collect personal information online from children under 13 without legally required parental authorization. If we learn that such information was collected contrary to applicable law, we will take appropriate steps to delete it."
+   },
+   {
+    "t": "h2",
+    "text": "14. International Visitors"
+   },
+   {
+    "t": "p",
+    "text": "BDSG is based in the United States. If you access BDSG services from another country, personal information may be transferred to, stored in, or processed in the United States or other countries where BDSG or its service providers operate. Different jurisdictions may provide different privacy protections."
+   },
+   {
+    "t": "h2",
+    "text": "15. Third-Party Websites and Services"
+   },
+   {
+    "t": "p",
+    "text": "BDSG may link to third-party websites or services. Their privacy practices are governed by their own policies, and BDSG is not responsible for third-party services outside its control."
+   },
+   {
+    "t": "h2",
+    "text": "16. Changes to This Privacy Policy"
+   },
+   {
+    "t": "p",
+    "text": "BDSG may update this Privacy Policy periodically. The effective date will be updated when changes are published, and additional notice will be provided where required by applicable law."
+   },
+   {
+    "t": "h2",
+    "text": "17. Contact"
+   },
+   {
+    "t": "p",
+    "text": "BDSG Brands, LLC West Jordan, Utah 84084 Website: bdsgbrands.com"
+   }
+  ]
+ },
+ "cookies": {
+  "title": "Cookie Policy",
+  "effective": "August 21, 2026",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "This Cookie Policy explains how BDSG Brands, LLC (\"BDSG,\" \"we,\" \"us,\" or \"our\") uses cookies and similar technologies on bdsgbrands.com. It should be read together with the BDSG Privacy Policy."
+   },
+   {
+    "t": "h2",
+    "text": "1. What Cookies Are"
+   },
+   {
+    "t": "p",
+    "text": "Cookies are small data files that websites place or access on a browser or device. Similar technologies include pixels, tags, web beacons, local storage, device identifiers, and software development kits. This Policy generally refers to these technologies collectively as \"cookies.\""
+   },
+   {
+    "t": "h2",
+    "text": "2. Strictly Necessary Cookies"
+   },
+   {
+    "t": "p",
+    "text": "These technologies are used to provide essential website functions such as:"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Shopping cart and checkout"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Payment processing and transaction security"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Account authentication"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Fraud prevention and security"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Network and session management"
+   },
+   {
+    "t": "li",
+    "label": "",
+    "text": "Remembering privacy selections"
+   },
+   {
+    "t": "p",
+    "text": "Because these technologies are necessary to provide requested functionality or protect the service, they generally cannot be disabled through BDSG cookie-preference controls."
+   },
+   {
+    "t": "h2",
+    "text": "3. Functional Cookies"
+   },
+   {
+    "t": "p",
+    "text": "Functional cookies may remember account preferences, prior selections, region or language choices, website settings, or other preferences that improve website functionality. Disabling them may reduce some features."
+   },
+   {
+    "t": "h2",
+    "text": "4. Analytics and Performance Cookies"
+   },
+   {
+    "t": "p",
+    "text": "Analytics technologies help BDSG understand visitor counts, pages viewed, traffic sources, site navigation, product interest, checkout activity, conversions, technical errors, and website performance. BDSG uses this information to improve the website, products, marketing, and customer experience."
+   },
+   {
+    "t": "h2",
+    "text": "5. Advertising and Targeting Cookies"
+   },
+   {
+    "t": "p",
+    "text": "Advertising technologies may help BDSG and advertising partners measure campaigns, attribute purchases, build advertising audiences, limit repetitive advertising, deliver more relevant advertising, or retarget visitors who previously interacted with BDSG."
+   },
+   {
+    "t": "p",
+    "text": "Depending on applicable law, use of these technologies may be considered targeted advertising or the sale or sharing of personal information. Where required, BDSG will provide an appropriate opt-out mechanism."
+   },
+   {
+    "t": "h2",
+    "text": "6. First-Party and Third-Party Cookies"
+   },
+   {
+    "t": "p",
+    "text": "First-party cookies are set by or for BDSG and commonly support website operation and preferences. Third-party cookies or similar technologies may be provided by ecommerce, payment, fraud-prevention, analytics, advertising, social-media, customer-support, communications, or performance providers and may be subject to those providers' own privacy practices."
+   },
+   {
+    "t": "h2",
+    "text": "7. Session and Persistent Cookies"
+   },
+   {
+    "t": "p",
+    "text": "Session cookies generally expire when a browser session ends. Persistent cookies remain for a specified period or until deleted. Duration depends on the purpose of the technology and the provider responsible for it."
+   },
+   {
+    "t": "h2",
+    "text": "8. Cookie Preference Controls"
+   },
+   {
+    "t": "p",
+    "text": "Where BDSG provides a cookie preference center, visitors may be able to accept or reject categories of nonessential cookies and later change those selections. Strictly necessary cookies may continue to operate because they support essential functionality or security."
+   },
+   {
+    "t": "p",
+    "text": "The cookie banner and preference center should be configured so that the technical behavior of cookies actually follows the user's legally required choices. Publishing this Policy alone does not disable nonessential tracking."
+   },
+   {
+    "t": "h2",
+    "text": "9. Browser Controls"
+   },
+   {
+    "t": "p",
+    "text": "Most browsers allow users to view, delete, block, or restrict cookies. Blocking cookies may affect account login, shopping carts, checkout, saved preferences, and other website functions."
+   },
+   {
+    "t": "h2",
+    "text": "10. Browser-Based Opt-Out Signals"
+   },
+   {
+    "t": "p",
+    "text": "Where required by applicable law and technically supported, BDSG will process legally recognized browser-based opt-out preference signals in accordance with applicable law and BDSG technology configuration."
+   },
+   {
+    "t": "h2",
+    "text": "11. Email Technologies"
+   },
+   {
+    "t": "p",
+    "text": "BDSG emails may contain technologies that allow us to determine whether a message was delivered, opened, or interacted with. We may use this information for communication effectiveness, security, and customer service, subject to applicable law and provider settings."
+   },
+   {
+    "t": "h2",
+    "text": "12. Changes to Cookie Providers"
+   },
+   {
+    "t": "p",
+    "text": "The specific cookies and providers used by BDSG may change as ecommerce, analytics, advertising, security, and customer-experience tools change. BDSG may update this Policy or its cookie preference center accordingly."
+   },
+   {
+    "t": "h2",
+    "text": "13. Changes to This Policy"
+   },
+   {
+    "t": "p",
+    "text": "BDSG may update this Cookie Policy periodically to reflect changes in technology, website functionality, providers, business practices, or legal requirements. The effective date above identifies the current version."
+   },
+   {
+    "t": "h2",
+    "text": "14. Contact"
+   },
+   {
+    "t": "p",
+    "text": "Questions about cookies or tracking technologies may be submitted through the BDSG Contact or Privacy Request process at bdsgbrands.com."
+   }
+  ]
+ }
+}

@@ -20,6 +20,11 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    rules: { "@next/next/no-img-element": "off" }, // ponytail: small local images, plain img is fine
+    ignores: [
+    ],
+  },
 ];
 
 export default eslintConfig;
