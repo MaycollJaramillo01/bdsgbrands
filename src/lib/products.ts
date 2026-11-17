@@ -1,68 +1,156 @@
-// ponytail: four formulas live in code; move to a DB table when the catalog grows past a handful.
+// Single source of truth for the four formulas. Availability is data, never free text.
+// ponytail: typed module, not a CMS — four products, one editor. Move to a DB table when the catalog grows.
+
+export type Status = "coming_soon" | "waitlist" | "in_stock" | "low_stock" | "out_of_stock" | "discontinued";
+
 export type Product = {
-  slug: string;
-  n: string;
+  id: string;
+  slug: "barrier" | "renewal" | "calm" | "recovery";
+  number: "01" | "02" | "03" | "04";
   name: string;
-  role: string;
-  line: string;
-  body: string;
-  actives: string[];
-  price: number | null; // null = Coming soon
-  member: number | null;
-  photo: string | null; // null = drawn tube
-  stripePriceId?: string; // fill after `insforge payments prices create`
+  category: "skincare";
+  role: string; // published function line, e.g. "Repair & Protect"
+  headline: string;
+  shortDescription: string;
+  longDescription: string;
+  status: Status;
+  price: number | null; // USD, published retail price
+  memberPrice: number | null;
+  currency: "USD";
+  featuredIngredients: string[];
+  inci: string | null; // BLOCKED: only from BDSG
+  size: string | null; // BLOCKED: packaging conflict (6 oz vs 4 oz)
+  directions: string | null; // BLOCKED
+  warnings: string | null; // BLOCKED
+  whenToUse: string;
+  image: { src: string; alt: string; width: number; height: number } | null;
+  seo: { title: string; description: string };
+  related: Product["slug"];
+  stripePriceId?: string;
+  updatedAt: string;
 };
 
 export const products: Product[] = [
   {
+    id: "bdsg-barrier",
     slug: "barrier",
-    n: "01",
+    number: "01",
     name: "Barrier",
+    category: "skincare",
     role: "Repair & Protect",
-    line: "Holds the line against moisture loss.",
-    body: "Skin takes the work too: sweat, chlorine, cold air, friction. Barrier helps it hold moisture so you can go again tomorrow.",
-    actives: ["Goat milk", "Ceramide NP", "Rice peptides", "Panthenol", "Hyaluronic acid"],
+    headline: "Hold the line.",
+    shortDescription: "Supports moisture retention with goat milk, Ceramide NP, panthenol and hyaluronic acid.",
+    longDescription:
+      "A daily formula built around goat milk, Ceramide NP, panthenol and hyaluronic acid to support moisture retention and everyday barrier care. Made for skin that takes on sweat, cold air, chlorine and repeated cleansing.",
+    status: "waitlist",
     price: 33,
-    member: 29.7,
-    photo: "/img/sitio-actual-barrier.jpg",
+    memberPrice: 29.7,
+    currency: "USD",
+    featuredIngredients: ["Goat Milk", "Ceramide NP", "Rice Peptides", "Panthenol", "Hyaluronic Acid"],
+    inci: null,
+    size: null,
+    directions: null,
+    warnings: null,
+    whenToUse: "Daily, as part of your morning or evening routine, and after cleansing on training days.",
+    image: { src: "/img/sitio-actual-barrier.jpg", alt: "BDSG Barrier tube standing on stone beside rice and a dish of cream", width: 800, height: 1200 },
+    seo: {
+      title: "Barrier — Goat Milk & Ceramide NP Moisture Support",
+      description: "BDSG Barrier: goat milk, Ceramide NP, panthenol and hyaluronic acid to support moisture retention. $33.00 at launch. Join the waitlist.",
+    },
+    related: "calm",
+    updatedAt: "2026-11-17",
   },
   {
+    id: "bdsg-renewal",
     slug: "renewal",
-    n: "02",
+    number: "02",
     name: "Renewal",
+    category: "skincare",
     role: "Renew & Revitalize",
-    line: "Clears the surface. Keeps the comfort.",
-    body: "A gentle reset for texture after weeks of hard sessions. Papain enzyme works on the surface while honey and aloe keep it comfortable.",
-    actives: ["Niacinamide", "Honey", "Propolis", "Aloe", "Papain enzyme"],
+    headline: "Clear the surface. Keep the comfort.",
+    shortDescription: "Papain enzyme and niacinamide for surface renewal, with goat milk, honey and aloe for comfort.",
+    longDescription:
+      "Papain enzyme and niacinamide support surface renewal while goat milk, honey and aloe help maintain hydration and skin comfort.",
+    status: "coming_soon",
     price: null,
-    member: null,
-    photo: null,
+    memberPrice: null,
+    currency: "USD",
+    featuredIngredients: ["Niacinamide", "Honey", "Propolis", "Aloe", "Papain Enzyme"],
+    inci: null,
+    size: null,
+    directions: null,
+    warnings: null,
+    whenToUse: "When skin texture needs a reset between hard training weeks.",
+    image: null,
+    seo: {
+      title: "Renewal — Niacinamide & Papain Enzyme Formula",
+      description: "BDSG Renewal: niacinamide, papain enzyme, honey, propolis and aloe on a goat milk base. Coming soon. Get notified at launch.",
+    },
+    related: "barrier",
+    updatedAt: "2026-11-17",
   },
   {
+    id: "bdsg-calm",
     slug: "calm",
-    n: "03",
+    number: "03",
     name: "Calm",
+    category: "skincare",
     role: "Soothe & Calm",
-    line: "A reset after stress, dryness and overexposure.",
-    body: "For the days skin feels tight and worn. Beta-glucan and botanical oils settle dryness on the same goat milk base.",
-    actives: ["Goat milk", "Beta-glucan", "Botanical oils", "Panthenol", "Adaptogens"],
+    headline: "Reset after the day takes its toll.",
+    shortDescription: "Beta-glucan, botanical oils and panthenol on goat milk for skin that feels dry, tight or overexposed.",
+    longDescription:
+      "A goat milk-based formula featuring beta-glucan, botanical oils, panthenol and adaptogens for skin that feels dry, tight or overexposed after long days and hard sessions.",
+    status: "waitlist",
     price: 35,
-    member: 31.5,
-    photo: "/img/sitio-actual-calm.jpg",
+    memberPrice: 31.5,
+    currency: "USD",
+    featuredIngredients: ["Goat Milk", "Beta-Glucan", "Botanical Oils", "Panthenol", "Adaptogens"],
+    inci: null,
+    size: null,
+    directions: null,
+    warnings: null,
+    whenToUse: "After sun, wind, cold or a long day, whenever skin feels tight.",
+    image: { src: "/img/sitio-actual-calm.jpg", alt: "BDSG Calm tube on stone with chia seeds, a glass of milk and dropper bottles", width: 800, height: 1200 },
+    seo: {
+      title: "Calm — Goat Milk & Beta-Glucan Comfort Formula",
+      description: "BDSG Calm: goat milk, beta-glucan, botanical oils and panthenol for skin that feels dry or tight. $35.00 at launch. Join the waitlist.",
+    },
+    related: "recovery",
+    updatedAt: "2026-11-17",
   },
   {
+    id: "bdsg-recovery",
     slug: "recovery",
-    n: "04",
+    number: "04",
     name: "Recovery",
+    category: "skincare",
     role: "Deep Recovery",
-    line: "For skin after the session.",
-    body: "Applied after the work. Magnesium PCA and menthol bring a cool finish; ginger and copaiba round out the comfort.",
-    actives: ["Goat milk", "Magnesium PCA", "Menthol", "Ginger", "Copaiba"],
+    headline: "For skin after the session.",
+    shortDescription: "Magnesium PCA, menthol and ginger on goat milk for a cool, comfortable finish after activity.",
+    longDescription:
+      "Goat milk, magnesium PCA, menthol, ginger and copaiba bring a cool, comfortable finish to post-activity skin care.",
+    status: "coming_soon",
     price: null,
-    member: null,
-    photo: "/img/sitio-actual-recovery.jpg",
+    memberPrice: null,
+    currency: "USD",
+    featuredIngredients: ["Goat Milk", "Magnesium PCA", "Menthol", "Ginger", "Copaiba"],
+    inci: null,
+    size: null,
+    directions: null,
+    warnings: null,
+    whenToUse: "Right after training, once you've showered.",
+    image: { src: "/img/sitio-actual-recovery.jpg", alt: "BDSG Recovery tube on stone beside ginger root and a glass of milk", width: 800, height: 1200 },
+    seo: {
+      title: "Recovery — Magnesium PCA & Menthol Post-Activity Formula",
+      description: "BDSG Recovery: goat milk, magnesium PCA, menthol, ginger and copaiba for post-activity comfort. Coming soon. Get notified at launch.",
+    },
+    related: "renewal",
+    updatedAt: "2026-11-17",
   },
 ];
 
-export const money = (v: number) => `$${v.toFixed(2)}`;
+/** Shop order from the brief: purchasable-first. */
+export const shopOrder: Product["slug"][] = ["barrier", "calm", "renewal", "recovery"];
+
 export const bySlug = (s: string) => products.find((p) => p.slug === s);
+export const money = (v: number) => `$${v.toFixed(2)}`;

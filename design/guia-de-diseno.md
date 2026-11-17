@@ -1,6 +1,24 @@
 # BDSG Store · Guía de diseño web
 
-**Versión 1.0 · 17-11-2026 · Dirección: skincare editorial sobre blanco nacarado**
+> **Versión 2.0 (17-11-2026). Manda sobre todo lo que sigue.** La reconstrucción reemplaza la paleta perla/plum por la del brief. Lo demás (idea, voz, fotografía) sigue vigente salvo donde lo contradiga esto.
+>
+> - **Paleta:**
+>   - Tintas ink-950 `#0B0C0B`, ink-900 `#151715`, graphite-800 `#242724`
+>   - Grises stone-600 `#74786F`, stone-400 `#A6AAA0`
+>   - Fondos bone-100 `#EEECE5`, bone-50 `#F7F5EF` (fondo principal), milk-00 `#FFFDF8`
+>   - Acento sage-500 `#778372` (sage-300 `#AAB4A5` en selección/acentos suaves)
+>   - earth-500 `#8A604C`, rara vez
+>   - Estados: success `#337A4C`, warning `#A56B24`, error `#A64242`
+>   - El plum y el orquídea ya no se usan. Logos en versión negro/blanco.
+> - **Tipografía:** Archivo variable, autoalojada. Display 34–76px a 112% de ancho. h1 36–64, h2 30–48, cuerpo 17px, nunca menos de 16 en texto corrido.
+> - **Espaciado:** escala de 4px (`--s1`…`--s32`). Ancho máximo 1440px, lectura 720px. Grilla de 12/8/4 columnas.
+> - **Radios:** sm 6, md 12, lg 20, xl 28, pill. Botones 10px.
+> - **Separadores:** sin líneas finas. Separar con espacio o con cambio de tono; las líneas quedan solo en tablas y campos.
+> - **Disponibilidad:** el botón lo decide el estado del producto (`src/lib/availability.ts`). No hay "Add to bag" si no hay stock.
+> - **Movimiento:** entradas escalonadas con `[data-reveal]`, de 180–650ms, respetando `prefers-reduced-motion`.
+> - **Tokens en código:** `src/app/globals.css`.
+
+**Versión 1.0 · 17-11-2026 · Dirección: skincare editorial sobre blanco nacarado** (paleta reemplazada por la v2)
 
 Esta guía rige el diseño de la tienda online de BDSG. Se apoya en el *Manual de Marca BDSG v3* (Novarius), que sigue mandando en logo, voz y paleta original. Aquí se decide cómo se aplica en la web.
 

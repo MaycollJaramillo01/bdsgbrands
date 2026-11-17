@@ -1,11 +1,14 @@
 import Link from "next/link";
 
+export const metadata = { title: "Order received", robots: { index: false } };
+
+// ponytail: copy says "received", not "paid" — payment state comes from the Stripe webhook once Payments is enabled.
 export default function Success() {
   return (
-    <section className="done" aria-labelledby="done-h">
-      <h1 id="done-h" className="h1">Order in. Go train.</h1>
-      <p className="lead">Stripe sends your receipt by email. Your order ships once payment clears.</p>
-      <Link className="btn" href="/">Back to the formulas</Link>
-    </section>
+    <div className="container nf">
+      <h1 className="h1">Order received.</h1>
+      <p className="lead">Stripe emails your receipt once the payment is confirmed. We&apos;ll email you again when your order ships.</p>
+      <Link className="btn btn-primary" href="/shop">Back to the shop</Link>
+    </div>
   );
 }

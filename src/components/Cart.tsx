@@ -1,8 +1,10 @@
 "use client";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { bySlug, money, products } from "@/lib/products";
+import { bySlug, money } from "@/lib/products";
+import { canBuy, ctaLabel } from "@/lib/availability";
 import { insforge, ready } from "@/lib/insforge";
+import { track } from "@/lib/analytics";
 
 type Line = { slug: string; qty: number };
 type Ctx = { lines: Line[]; add: (slug: string) => void; open: () => void; count: number };
@@ -10,7 +12,8 @@ const CartCtx = createContext<Ctx>(null!);
 export const useCart = () => useContext(CartCtx);
 
 const KEY = "bdsg-cart";
-const FREE_SHIP = 70;
+// Only lines for products that are actually purchasable survive a reload.
+const valid = (ls: Line[]) => ls.filter((l) => { const p = bySlug(l.slug); return p && canBuy(p) && l.qty > 0; });
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [lines, setLines] = useState<Line[]>([]);
@@ -19,22 +22,21 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const dlg = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    try {
-      setLines(JSON.parse(localStorage.getItem(KEY) || "[]"));
-    } catch {}
+    try { setLines(valid(JSON.parse(localStorage.getItem(KEY) || "[]"))); } catch {}
   }, []);
   const save = (next: Line[]) => {
     setLines(next);
-    try {
-      localStorage.setItem(KEY, JSON.stringify(next));
-    } catch {}
+    try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
   };
 
   const setQty = (slug: string, qty: number) =>
-    save(qty < 1 ? lines.filter((l) => l.slug !== slug) : lines.map((l) => (l.slug === slug ? { ...l, qty } : l)));
+    save(qty < 1 ? lines.filter((l) => l.slug !== slug) : lines.map((l) => (l.slug === slug ? { ...l, qty: Math.min(qty, 10) } : l)));
   const add = (slug: string) => {
+    const p = bySlug(slug);
+    if (!p || !canBuy(p)) return;
     const hit = lines.find((l) => l.slug === slug);
-    save(hit ? lines.map((l) => (l.slug === slug ? { ...l, qty: l.qty + 1 } : l)) : [...lines, { slug, qty: 1 }]);
+    save(hit ? lines.map((l) => (l.slug === slug ? { ...l, qty: Math.min(l.qty + 1, 10) } : l)) : [...lines, { slug, qty: 1 }]);
+    track("add_to_cart", { item_id: slug, value: p.price ?? 0, currency: "USD" });
     dlg.current?.showModal();
   };
 
@@ -45,54 +47,54 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setErr("");
     const items = lines.map((l) => ({ priceId: bySlug(l.slug)?.stripePriceId, quantity: l.qty }));
     if (!ready || items.some((i) => !i.priceId)) {
-      setErr("Checkout opens at launch. Get notified and you will hear first.");
+      setErr("Checkout isn't open yet. Nothing has been charged.");
       return;
     }
     setBusy(true);
+    track("begin_checkout", { value: subtotal, currency: "USD" });
     const orderId = crypto.randomUUID();
-    const { error: e1 } = await insforge.database.from("orders").insert([
-      { id: orderId, items: lines, subtotal },
-    ]);
+    const { error: e1 } = await insforge.database.from("orders").insert([{ id: orderId, items: lines, subtotal }]);
     const { data, error } = e1
       ? { data: null, error: e1 }
       : await insforge.payments.stripe.createCheckoutSession("test", {
           mode: "payment",
           lineItems: items as { priceId: string; quantity: number }[],
           successUrl: `${location.origin}/checkout/success?order=${orderId}`,
-          cancelUrl: `${location.origin}/`,
+          cancelUrl: `${location.origin}/shop`,
           metadata: { order_id: orderId },
         });
     setBusy(false);
-    if (error || !data?.checkoutSession.url) {
-      setErr("That didn't go through. Try again in a moment.");
-      return;
-    }
-    save([]);
+    if (error || !data?.checkoutSession.url) { setErr("Checkout didn't open. Nothing has been charged. Try again in a moment."); return; }
     location.assign(data.checkoutSession.url);
   }
 
   return (
     <CartCtx.Provider value={{ lines, add, count, open: () => dlg.current?.showModal() }}>
       {children}
-      <dialog ref={dlg} className="cart" aria-labelledby="cart-title" onClick={(e) => e.target === dlg.current && dlg.current.close()}>
-        <div className="cart-in">
-          <header>
-            <h2 id="cart-title" className="h3">Your bag</h2>
-            <button className="link" onClick={() => dlg.current?.close()}>Close</button>
-          </header>
+      <dialog ref={dlg} className="drawer" aria-labelledby="bag-title" onClick={(e) => e.target === dlg.current && dlg.current.close()}>
+        <div className="drawer-in">
+          <div className="drawer-head">
+            <h2 id="bag-title" className="h3">Your bag</h2>
+            <button className="icon-btn" aria-label="Close bag" onClick={() => dlg.current?.close()}>
+              <svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 5l12 12M17 5L5 17" stroke="currentColor" strokeWidth="1.8" /></svg>
+            </button>
+          </div>
           {lines.length === 0 ? (
-            <p className="muted">Nothing here yet. {products[0].name} and {products[2].name} are ready.</p>
+            <div className="stack">
+              <p>Your bag is empty.</p>
+              <Link className="btn btn-secondary" href="/shop" onClick={() => dlg.current?.close()}>Browse the formulas</Link>
+            </div>
           ) : (
-            <ul className="lines">
+            <ul className="bag-lines">
               {lines.map((l) => {
                 const p = bySlug(l.slug)!;
                 return (
                   <li key={l.slug}>
-                    <span className="nm">{p.name}</span>
+                    <b>{p.name}</b>
                     <span className="qty">
-                      <button aria-label={`One less ${p.name}`} onClick={() => setQty(l.slug, l.qty - 1)}>−</button>
-                      <output aria-live="polite">{l.qty}</output>
-                      <button aria-label={`One more ${p.name}`} onClick={() => setQty(l.slug, l.qty + 1)}>+</button>
+                      <button aria-label={`Remove one ${p.name}`} onClick={() => setQty(l.slug, l.qty - 1)}>−</button>
+                      <output aria-live="polite" aria-label={`${p.name} quantity`}>{l.qty}</output>
+                      <button aria-label={`Add one ${p.name}`} onClick={() => setQty(l.slug, l.qty + 1)}>+</button>
                     </span>
                     <span className="num">{money((p.price ?? 0) * l.qty)}</span>
                   </li>
@@ -101,17 +103,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             </ul>
           )}
           {lines.length > 0 && (
-            <footer>
-              <p className="tot"><span>Subtotal</span><span className="num">{money(subtotal)}</span></p>
-              <p className="muted small">
-                {subtotal >= FREE_SHIP ? "Shipping is free on this order." : `${money(FREE_SHIP - subtotal)} more for free shipping. Members: free from $50.00.`}
-              </p>
-              <button className="btn wide" onClick={checkout} disabled={busy}>{busy ? "Opening checkout" : "Check out"}</button>
-              {err && <p role="alert" className="small">{err}</p>}
+            <div className="drawer-foot">
+              <p className="card-row"><span>Subtotal</span><b className="num">{money(subtotal)}</b></p>
+              <p className="small muted">Shipping and tax are calculated at checkout.</p>
+              <button className="btn btn-primary btn-block" onClick={checkout} disabled={busy}>{busy ? "Opening checkout…" : "Check out"}</button>
+              {err && <p role="alert" className="alert alert-error">{err}</p>}
               <p className="small muted">
-                By checking out you agree to the <Link href="/legal/terms">Terms of sale</Link>. See <Link href="/legal/shipping">shipping</Link> and <Link href="/legal/returns">returns</Link>.
+                By checking out you agree to the <Link className="inline" href="/legal/terms">Terms of Sale</Link> and the <Link className="inline" href="/legal/returns">Return Policy</Link>.
               </p>
-            </footer>
+            </div>
           )}
         </div>
       </dialog>
@@ -121,10 +121,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 export function CartButton() {
   const { count, open } = useCart();
-  return <button className="navlink" onClick={open}>Bag ({count})</button>;
+  return (
+    <button className="btn btn-secondary" style={{ minHeight: 40, padding: "0 14px" }} onClick={open} aria-label={`Bag, ${count} item${count === 1 ? "" : "s"}`}>
+      Bag <span className="bag-count" aria-hidden="true">{count}</span>
+    </button>
+  );
 }
 
+/** Rendered only for purchasable products; callers fall back to the waitlist otherwise. */
 export function AddButton({ slug }: { slug: string }) {
   const { add } = useCart();
-  return <button className="btn" onClick={() => add(slug)}>Add to bag</button>;
+  const p = bySlug(slug);
+  if (!p || !canBuy(p)) return null;
+  return <button className="btn btn-primary" onClick={() => add(slug)}>{ctaLabel(p)}</button>;
 }

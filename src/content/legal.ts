@@ -4,7 +4,7 @@ import scraped from "./legal.json";
 // pulled into legal.json. Shipping and Membership below are assembled from what BDSG publishes;
 // blocks typed "tbc" are facts BDSG must supply before launch and render highlighted.
 export type Block = { t: "h2" | "h3" | "p" | "li" | "tbc"; text: string; label?: string };
-export type Doc = { title: string; effective: string; summary: string; blocks: Block[] };
+export type Doc = { title: string; effective: string; summary: string; blocks: Block[]; draft?: boolean };
 
 const summaries: Record<string, string> = {
   returns: "Unopened products within 15 days. Damaged or wrong items are always handled.",
@@ -15,7 +15,7 @@ const summaries: Record<string, string> = {
 
 const shipping: Doc = {
   title: "Shipping Policy",
-  effective: "Pending BDSG approval",
+  effective: "Not yet in effect", draft: true,
   summary: "Where we ship, what it costs and when it arrives.",
   blocks: [
     { t: "h2", text: "1. Where we ship" },
@@ -41,7 +41,7 @@ const shipping: Doc = {
 
 const membership: Doc = {
   title: "Greatness Program Membership Terms",
-  effective: "Pending BDSG approval",
+  effective: "Not yet in effect", draft: true,
   summary: "$55 to join, $35 a year after that, renews automatically. How to cancel and when refunds apply.",
   blocks: [
     { t: "p", text: "These terms summarize the Greatness Program membership offered by BDSG Brands, LLC. Section 6 of the Return & Refund Policy governs membership fees and cancellations, and the BDSG Greatness Program & Partner Agreement controls where it applies." },

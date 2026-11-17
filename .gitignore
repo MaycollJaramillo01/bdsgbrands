@@ -58,3 +58,9 @@ next-env.d.ts
 .trae
 .windsurf
 !.env.example
+
+.vercel
+
+.taste-skill
+/test-results
+/playwright-report
