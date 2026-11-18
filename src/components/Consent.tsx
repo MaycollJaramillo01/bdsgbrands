@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { applyConsent, CONSENT_KEY, CONSENT_V, readConsent, type Consent as C } from "@/lib/analytics";
+import { applyConsent, CONSENT_KEY, CONSENT_V, gpc, hasTrackers, readConsent, trackers, type Consent as C } from "@/lib/analytics";
 
 const OPEN = "bdsg:consent-open";
 
@@ -11,6 +11,7 @@ export function Consent() {
   const [prefs, setPrefs] = useState({ analytics: false, marketing: false });
 
   useEffect(() => {
+    if (!hasTrackers) return; // nothing non-essential is installed, so there is nothing to consent to
     const c = readConsent();
     if (c) { setPrefs({ analytics: c.analytics, marketing: c.marketing }); applyConsent(c); } else setOpen(true);
     const reopen = () => { setManage(true); setOpen(true); };
@@ -35,13 +36,13 @@ export function Consent() {
     <section className="consent" role="dialog" aria-modal="false" aria-labelledby="consent-h">
       <h2 id="consent-h" className="h4">Cookies, your call</h2>
       <p className="small" style={{ marginTop: 8 }}>
-        Essential cookies keep the bag and this choice working. With your OK we also use analytics and marketing cookies. <Link className="inline" href="/legal/cookies">Cookie Policy</Link>
+        Essential cookies keep the bag and this choice working. With your OK we also use the optional cookies listed under Manage. <Link className="inline" href="/legal/cookies">Cookie Policy</Link>
       </p>
       {manage && (
         <div className="consent-prefs">
           <label className="check"><input type="checkbox" checked disabled /> <span><b>Essential</b>. Always on.</span></label>
-          <label className="check"><input type="checkbox" checked={prefs.analytics} onChange={(e) => setPrefs({ ...prefs, analytics: e.target.checked })} /> <span><b>Analytics</b>. Anonymous visit counts (Google Analytics).</span></label>
-          <label className="check"><input type="checkbox" checked={prefs.marketing} onChange={(e) => setPrefs({ ...prefs, marketing: e.target.checked })} /> <span><b>Marketing</b>. Ad measurement (Meta Pixel).</span></label>
+          {trackers.analytics && <label className="check"><input type="checkbox" checked={prefs.analytics} onChange={(e) => setPrefs({ ...prefs, analytics: e.target.checked })} /> <span><b>Analytics</b>. Anonymous visit measurement.</span></label>}
+          {trackers.marketing && <label className="check"><input type="checkbox" disabled={gpc()} checked={prefs.marketing && !gpc()} onChange={(e) => setPrefs({ ...prefs, marketing: e.target.checked })} /> <span><b>Marketing</b>. Ad measurement.{gpc() ? " Off: your browser sends a Global Privacy Control signal." : ""}</span></label>}
         </div>
       )}
       <div className="cluster">
@@ -56,5 +57,6 @@ export function Consent() {
 }
 
 export function ConsentLink() {
+  if (!hasTrackers) return null;
   return <button type="button" onClick={() => window.dispatchEvent(new Event(OPEN))}>Cookie settings</button>;
 }

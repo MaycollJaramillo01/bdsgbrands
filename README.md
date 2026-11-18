@@ -52,3 +52,5 @@ Migrations are not rolled back automatically. Write a new forward migration inst
 | Legal texts | `src/content/legal.ts`. Drafts are noindex and labeled as not in effect |
 | Design tokens | `src/app/globals.css`, documented in `design/guia-de-diseno.md` |
 | Launch blockers | `docs/BLOCKERS.md` |
+| Architecture (sitemap, state, SEO, a11y, privacy, commerce, redirects) | `docs/ARCHITECTURE.md` |
+| Pre-launch checklist | `docs/DEPLOY_CHECKLIST.md` |

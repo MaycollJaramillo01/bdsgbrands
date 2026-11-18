@@ -2,6 +2,15 @@
 
 Nothing below has been invented. Each item has a typed placeholder in the code, so it can be filled in without a redesign.
 
+## Discrepancies between bdsgbrands.com and this site
+
+These are not resolved arbitrarily. Each one is held off by a switch until BDSG decides.
+
+- [ ] **Greatness enrollment:** bdsgbrands.com shows "Create Account & Join"; this site says enrollment isn't open. → `NEXT_PUBLIC_MEMBERSHIP_ENROLLMENT_LIVE` (default off) plus `membership.effectiveDate` (null). Enrollment cannot open until both are set.
+- [ ] **Testimonials:** bdsgbrands.com shows testimonials; none were migrated. → `testimonials` in `src/lib/compliance.ts`, which needs a source record, permission and disclosure for each one.
+- [ ] **Contact email:** bdsgbrands.com lists contact@bdsgbrands.com as "address to be confirmed". → `NEXT_PUBLIC_CONTACT_EMAIL` (hidden while empty).
+- [ ] **Canonical property:** which domain is the real store? → `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_SITE_ENV`.
+
 ## Product and commerce
 
 - [ ] Are Barrier units actually available for sale? → `status` in `src/lib/products.ts`
@@ -15,7 +24,7 @@ Nothing below has been invented. Each item has a typed placeholder in the code, 
 - [ ] Warnings (packaging-approved wording) → `warnings: null`
 - [ ] Manufacturer / Responsible Person data → `regulatory` in `src/lib/compliance.ts`
 - [ ] Claims substantiation (current copy avoids every clinical claim) → `claims` in `src/lib/compliance.ts`
-- [ ] Payment provider enabled (InsForge Payments access requested)
+- [ ] Commerce provider confirmed → adapter in `src/lib/commerce.ts`; `NEXT_PUBLIC_CHECKOUT_LIVE` stays off until then
 - [ ] Tax solution (e.g. Stripe Tax)
 - [ ] Fulfillment provider
 

@@ -17,11 +17,13 @@ export function ContactForm() {
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const body = Object.fromEntries(new FormData(e.currentTarget));
+    if (state === "loading") return;
+    track("contact_start", { topic });
     setState("loading"); setErrors({});
     try {
       const r = await fetch("/api/contact", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
       const j = await r.json().catch(() => ({}));
-      if (j.status === "success" && j.id) { setId(j.id); setState("success"); track("contact_submit", { topic }); return; }
+      if (j.status === "success" && j.id) { setId(j.id); setState("success"); track("contact_complete", { topic }); return; }
       if (j.status === "invalid") {
         setErrors(j.errors ?? {}); setState("invalid");
         requestAnimationFrame(() => document.getElementById("contact-errors")?.focus());

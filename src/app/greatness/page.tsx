@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function Greatness() {
-  const open = membership.effectiveDate != null;
+  const open = membership.enrollmentOpen;
   return (
     <div className="container">
       <Crumbs items={[["/greatness", "Greatness Program"]]} />
@@ -33,11 +33,15 @@ export default function Greatness() {
           <p className="plan-price">${membership.initialPrice}<small>first year</small></p>
           <p>Then <b>${membership.renewalPrice}/year</b>, renewing automatically until you cancel.</p>
           <ul className="ticks">{membership.benefits.map((b) => <li key={b.title}><span><b>{b.title}.</b> {b.body}</span></li>)}</ul>
-          <div className="actions">
-            {open ? null : (
+          <div className="actions" id="notify">
+            <p className="small"><b>Automatic renewal:</b> ${membership.initialPrice} today, then ${membership.renewalPrice} charged automatically each year until you cancel. Cancel within 24 hours of joining for a full refund.</p>
+            {open ? (
+              // BLOCKED BY BDSG: the enrollment flow (provider, renewal consent, notices, cancellation) is built once terms are approved.
+              <p className="small">Enrollment is opening. Check back shortly.</p>
+            ) : (
               <>
-                <p className="small">Enrollment opens at launch. Get one email when it does.</p>
-                <Waitlist topic="greatness-program" cta="Notify me" source="greatness" />
+                <p className="small">Enrollment isn&apos;t open yet.</p>
+                <Waitlist topic="greatness-program" cta="Notify me when enrollment opens" source="greatness" />
               </>
             )}
           </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { products } from "@/lib/products";
+import { bySlug, publicProducts as products } from "@/lib/products";
+import { ingredients } from "@/lib/ingredients";
 import { Crumbs } from "@/components/Crumbs";
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default function Science() {
             <tbody>
               {products.map((p) => (
                 <tr key={p.slug}>
-                  <th scope="row"><Link className="inline" href={`/products/${p.slug}`}>{p.number} · {p.name}</Link></th>
+                  <th scope="row"><Link className="inline" href={`/products/${p.slug}`}>{p.sequence} · {p.name}</Link></th>
                   <td>{p.role}</td>
                   <td>{p.featuredIngredients.join(", ")}</td>
                 </tr>
@@ -42,11 +43,32 @@ export default function Science() {
         </div>
       </section>
 
+      <section className="section" aria-labelledby="gl-h">
+        <h2 id="gl-h" className="h2">Ingredient glossary</h2>
+        <dl className="ingredients" style={{ marginTop: 32 }}>
+          {ingredients.map((g) => (
+            <div className="ingredient" key={g.name}>
+              <dt className="h4">{g.name}</dt>
+              <dd>{g.body}</dd>
+              <dd className="small muted">In: {g.in.map((s) => bySlug(s)!.name).join(", ")}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
       <section className="section read prose" aria-labelledby="say-h">
         <h2 id="say-h" className="h2">What we say, and what we don&apos;t</h2>
-        <p style={{ marginTop: 16 }}>BDSG products are cosmetics. We describe what each ingredient is and why it&apos;s in the formula. We don&apos;t claim to treat, heal or cure anything, and we won&apos;t publish a performance claim until it has evidence behind it.</p>
+        <p style={{ marginTop: 16 }}><b>BDSG products are cosmetics.</b> We describe what each ingredient is and why it&apos;s in the formula. We don&apos;t claim to treat, heal or cure disease, and we don&apos;t publish performance claims without appropriate support.</p>
         <p>Full ingredient lists (INCI) will be published on each product page before launch.</p>
-        <p>Questions about an ingredient or a skin reaction? <Link href="/contact">Contact us</Link>.</p>
+      </section>
+
+      <section className="section facts" aria-labelledby="ifaq-h">
+        <h2 id="ifaq-h" className="h2">Ingredient FAQ</h2>
+        <div className="acc" data-reveal style={{ marginTop: 32 }}>
+          <details><summary>Why goat milk instead of a water base alone?</summary><div className="acc-body"><p>Goat milk brings fats and proteins that give the formulas a soft, comfortable feel. Each formula then adds what its job needs.</p></div></details>
+          <details><summary>Where is the full ingredient list?</summary><div className="acc-body"><p>It will be published on each product page before that formula goes on sale.</p></div></details>
+          <details><summary>I have an allergy. Can I check an ingredient?</summary><div className="acc-body"><p>Yes. <Link className="inline" href="/contact">Contact us</Link> with the formula and the ingredient you&apos;re asking about.</p></div></details>
+        </div>
       </section>
     </div>
   );

@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 import { insforge, ready } from "@/lib/insforge";
-import { parseContact, rateLimited } from "@/lib/validation";
+import { parseContact, rateLimited, badOrigin } from "@/lib/validation";
 
 const ip = (req: Request) => req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "local";
 
 // ponytail: messages are stored with an ID; email/helpdesk forwarding waits on BDSG's destination (docs/BLOCKERS.md).
 export async function POST(req: Request) {
+  if (badOrigin(req)) return NextResponse.json({ status: "error", message: "Invalid request." }, { status: 403 });
   const body = await req.json().catch(() => null);
   if (!body || typeof body !== "object") return NextResponse.json({ status: "error", message: "Invalid request." }, { status: 400 });
   if (body.company) return NextResponse.json({ status: "success", id: crypto.randomUUID() });

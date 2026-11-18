@@ -1,35 +1,40 @@
 import type { Product, Status } from "./products";
+import { settings } from "./site";
 
-export const PURCHASABLE: Status[] = ["in_stock", "low_stock"];
+type P = Pick<Product, "status" | "purchaseEnabled" | "retailPrice">;
 
-export const canBuy = (p: Pick<Product, "status" | "price">) => PURCHASABLE.includes(p.status) && p.price != null;
+/** The only gate for buying. Status, the product flag, a price AND the site-wide switches must all agree. */
+export const canBuy = (p: P, s = settings) =>
+  s.catalogLive && s.checkoutLive && p.status === "available" && p.purchaseEnabled && p.retailPrice != null;
 
-/** Label shown next to the price. Never invents scarcity: low_stock says nothing about counts. */
 export function statusLabel(s: Status): string {
   switch (s) {
-    case "in_stock": return "In stock";
-    case "low_stock": return "Limited availability";
+    case "available": return "Available";
     case "waitlist": return "Not yet available";
     case "coming_soon": return "Coming soon";
-    case "out_of_stock": return "Out of stock";
+    case "sold_out": return "Sold out";
     case "discontinued": return "Discontinued";
+    case "draft": return "Draft";
   }
 }
 
-export function ctaLabel(p: Pick<Product, "status" | "name" | "price">): string {
-  if (canBuy(p)) return `Add to bag — $${p.price!.toFixed(2)}`;
-  if (p.status === "out_of_stock") return "Notify me when it's back";
-  if (p.status === "discontinued") return "No longer available";
-  return p.status === "waitlist" ? `Join the ${p.name} waitlist` : "Notify me at launch";
+export function ctaLabel(p: P & Pick<Product, "name">, s = settings): string {
+  if (canBuy(p, s)) return `Add to bag — $${p.retailPrice!.toFixed(2)}`;
+  switch (p.status) {
+    case "waitlist": return `Join the ${p.name} waitlist`;
+    case "coming_soon": return "Notify me";
+    case "sold_out": return "Notify me when back";
+    case "discontinued": return "No longer available";
+    default: return "View formula"; // available but checkout off, or draft
+  }
 }
 
-/** schema.org availability. Waitlist/coming soon are never InStock; returns null when no Offer should exist. */
-export function schemaAvailability(s: Status): string | null {
-  if (s === "in_stock") return "https://schema.org/InStock";
-  if (s === "low_stock") return "https://schema.org/LimitedAvailability";
-  if (s === "out_of_stock") return "https://schema.org/OutOfStock";
-  if (s === "discontinued") return "https://schema.org/Discontinued";
+/** schema.org availability, from the same status. null = emit no Offer at all. */
+export function schemaAvailability(p: P, s = settings): string | null {
+  if (p.status === "available") return canBuy(p, s) ? "https://schema.org/InStock" : null;
+  if (p.status === "sold_out") return "https://schema.org/OutOfStock";
+  if (p.status === "discontinued") return "https://schema.org/Discontinued";
   return null;
 }
 
-export const anyPurchasable = (ps: Pick<Product, "status" | "price">[]) => ps.some(canBuy);
+export const anyPurchasable = (ps: P[], s = settings) => ps.some((p) => canBuy(p, s));

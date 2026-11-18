@@ -4,12 +4,13 @@ export type WaitlistTopic = (typeof WAITLIST_TOPICS)[number];
 
 export const CONTACT_TOPICS = [
   ["product", "Product question"],
-  ["order", "Order or shipping"],
+  ["order", "Order support"],
   ["membership", "Greatness Program"],
-  ["wholesale", "Wholesale or partnership"],
+  ["wholesale", "Wholesale"],
   ["press", "Press"],
+  ["privacy", "Privacy request"],
   ["reaction", "Skin reaction or product safety"],
-  ["other", "Something else"],
+  ["other", "Other"],
 ] as const;
 export type ContactTopic = (typeof CONTACT_TOPICS)[number][0];
 
@@ -72,4 +73,11 @@ export function rateLimited(key: string, max = 5, windowMs = 10 * 60_000, now = 
   if (!h || now - h.t > windowMs) { hits.set(key, { n: 1, t: now }); return false; }
   h.n++;
   return h.n > max;
+}
+
+/** CSRF guard for JSON endpoints: same-origin requests only, JSON content type only. */
+export function badOrigin(req: Request) {
+  const o = req.headers.get("origin");
+  if (o && o !== new URL(req.url).origin) return true;
+  return !req.headers.get("content-type")?.includes("application/json");
 }

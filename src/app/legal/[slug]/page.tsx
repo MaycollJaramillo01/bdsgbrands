@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { legal, legalOrder } from "@/content/legal";
+import { settings, site } from "@/lib/site";
 
 export const generateStaticParams = () => legalOrder.map(([slug]) => ({ slug }));
 
@@ -42,7 +43,7 @@ export default async function LegalPage({ params }: { params: Promise<{ slug: st
         <h1 className="h1">{d.title}</h1>
         <p className="lead">{d.summary}</p>
         <p className="small muted">Effective date: {d.effective}</p>
-        {d.draft ? (
+        {d.draft && !(settings.showDraftPolicies && !site.indexable) ? (
           // Unapproved drafts never render their text publicly; the full draft stays in src/content/legal.ts.
           <div className="draft" role="note">
             <p><b>This policy is not published yet.</b> It will appear here once it is approved, before any order or enrollment is accepted.</p>

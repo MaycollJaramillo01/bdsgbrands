@@ -3,8 +3,6 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CartButton } from "./Cart";
-import { anyPurchasable } from "@/lib/availability";
-import { products } from "@/lib/products";
 
 export const nav = [
   ["/shop", "Shop"],
@@ -12,9 +10,9 @@ export const nav = [
   ["/greatness", "Greatness Program"],
   ["/about", "About"],
   ["/faq", "FAQ"],
+  ["/contact", "Contact"],
 ] as const;
 
-const showBag = anyPurchasable(products);
 
 export function Header() {
   const path = usePathname();
@@ -33,7 +31,7 @@ export function Header() {
         </nav>
         <Link href="/" className="logo" aria-label="BDSG home"><img src="/brand/bdsg-horizontal-negro.svg" alt="" width={136} height={40} /></Link>
         <div className="nav-right">
-          {showBag ? <CartButton /> : <Link className="btn btn-primary" href="/shop" style={{ minHeight: 40, padding: "0 16px" }}>Join the waitlist</Link>}
+          <CartButton />
         </div>
       </div>
       <dialog ref={dlg} className="mobile-menu" aria-label="Menu">
@@ -47,7 +45,6 @@ export function Header() {
           <nav className="mobile-nav" aria-label="Mobile">
             <Link href="/" aria-current={path === "/" ? "page" : undefined}>Home</Link>
             {nav.map(([h, l]) => <Link key={h} href={h} aria-current={cur(h)}>{l}</Link>)}
-            <Link href="/contact" aria-current={cur("/contact")}>Contact</Link>
           </nav>
           <div className="mobile-legal">
             <Link href="/legal/privacy">Privacy</Link><Link href="/legal/terms">Terms</Link><Link href="/legal/returns">Returns</Link>

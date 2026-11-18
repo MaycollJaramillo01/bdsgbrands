@@ -3,10 +3,15 @@ import { useId, useState } from "react";
 import Link from "next/link";
 import { track } from "@/lib/analytics";
 import type { WaitlistTopic } from "@/lib/validation";
+import { publicProducts } from "@/lib/products";
 
 type State = "idle" | "loading" | "success" | "already" | "invalid" | "error" | "network";
 
-export function Waitlist({ topic, cta, source, askName = false }: { topic: WaitlistTopic; cta: string; source: string; askName?: boolean }) {
+const formulas = publicProducts.filter((p) => p.waitlistEnabled && p.status !== "available");
+
+type Props = { cta: string; source: string; askName?: boolean } & ({ topic: WaitlistTopic; chooseFormula?: never } | { chooseFormula: true; topic?: never });
+
+export function Waitlist({ topic: fixed, chooseFormula, cta, source, askName = false }: Props) {
   const [state, setState] = useState<State>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [msg, setMsg] = useState("");
@@ -14,7 +19,11 @@ export function Waitlist({ topic, cta, source, askName = false }: { topic: Waitl
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const f = new FormData(e.currentTarget);
+    if (state === "loading") return; // no double submit
+    const form = e.currentTarget;
+    const f = new FormData(form);
+    const topic = fixed ?? String(f.get("topic") || "");
+    track("join_waitlist_start", { topic, source });
     setState("loading");
     setErrors({});
     try {
@@ -29,10 +38,14 @@ export function Waitlist({ topic, cta, source, askName = false }: { topic: Waitl
       const j = await r.json().catch(() => ({}));
       if (j.status === "success" || j.status === "already") {
         setState(j.status);
-        if (j.status === "success") track("waitlist_signup", { topic, source });
+        if (j.status === "success") track("join_waitlist_complete", { topic, source });
         return;
       }
-      if (j.status === "invalid") { setErrors(j.errors ?? {}); setState("invalid"); return; }
+      if (j.status === "invalid") {
+        setErrors(j.errors ?? {}); setState("invalid");
+        requestAnimationFrame(() => form.querySelector<HTMLElement>("[aria-invalid=true]")?.focus());
+        return;
+      }
       setMsg(j.message ?? "Something went wrong. Try again in a moment.");
       setState("error");
     } catch {
@@ -55,8 +68,17 @@ export function Waitlist({ topic, cta, source, askName = false }: { topic: Waitl
           <input className="input" id={`${id}-fn`} name="firstName" autoComplete="given-name" maxLength={80} />
         </div>
       )}
+      {chooseFormula && (
+        <div className="field">
+          <label htmlFor={`${id}-tp`}>Formula</label>
+          <select className="select" id={`${id}-tp`} name="topic" defaultValue={formulas[0]?.slug} aria-invalid={!!errors.topic} aria-describedby={errors.topic ? `${id}-topic-err` : undefined}>
+            {formulas.map((p) => <option key={p.slug} value={p.slug}>{p.name}</option>)}
+          </select>
+          {err("topic")}
+        </div>
+      )}
       <div className="field">
-        <label htmlFor={`${id}-em`}>Email</label>
+        <label htmlFor={`${id}-em`}>Email <span className="muted">(required)</span></label>
         <div className="waitlist-row">
           <input className="input" id={`${id}-em`} name="email" type="email" required autoComplete="email" inputMode="email"
             aria-invalid={!!errors.email} aria-describedby={errors.email ? `${id}-email-err` : undefined} />
@@ -66,7 +88,7 @@ export function Waitlist({ topic, cta, source, askName = false }: { topic: Waitl
       </div>
       <label className="check">
         <input type="checkbox" name="consent" aria-invalid={!!errors.consent} aria-describedby={errors.consent ? `${id}-consent-err` : undefined} />
-        <span>Email me about this launch. Unsubscribe anytime. See the <Link className="inline" href="/legal/privacy">Privacy Policy</Link>.</span>
+        <span>Email me when this formula launches. This doesn&apos;t sign me up for other marketing. Unsubscribe anytime. See the <Link className="inline" href="/legal/privacy">Privacy Policy</Link>.</span>
       </label>
       {err("consent")}
       <div className="hp" aria-hidden="true">

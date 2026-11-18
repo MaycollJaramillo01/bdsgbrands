@@ -3,25 +3,17 @@ import Image from "next/image";
 import { bySlug, money, products, shopOrder } from "@/lib/products";
 import { ProductCard, PriceLine, StatusBadge } from "@/components/Product";
 import { Waitlist } from "@/components/Waitlist";
+import { ingredients } from "@/lib/ingredients";
 import { AddButton } from "@/components/Cart";
-import { anyPurchasable, canBuy, ctaLabel } from "@/lib/availability";
+import { anyPurchasable, canBuy, ctaLabel, statusLabel } from "@/lib/availability";
 import { membership, site } from "@/lib/site";
 
 export const metadata = { alternates: { canonical: "/" } };
 
-const ingredients = [
-  { name: "Goat milk", body: "The base of all four formulas. Naturally rich in fats and proteins that leave skin feeling soft and comfortable.", in: ["barrier", "renewal", "calm", "recovery"] },
-  { name: "Ceramide NP", body: "A lipid found in skin's outer layer, used to support moisture retention.", in: ["barrier"] },
-  { name: "Panthenol", body: "Provitamin B5, a humectant that helps skin hold water.", in: ["barrier", "calm"] },
-  { name: "Hyaluronic acid", body: "A humectant that draws water into the surface of the skin.", in: ["barrier"] },
-  { name: "Niacinamide", body: "Vitamin B3, used to support an even-looking, smooth surface.", in: ["renewal"] },
-  { name: "Magnesium PCA", body: "A mineral salt that pairs with menthol and ginger for a cool, comfortable finish.", in: ["recovery"] },
-] as const;
-
 const routine = [
   { img: "/img/gimnasio.jpg", alt: "Athlete training with weights in a gym", when: "After training", what: "Shower, then Recovery for a cool finish.", slug: "recovery" },
   { img: "/img/natacion.jpg", alt: "Swimmer in a pool lane", when: "After the pool", what: "Chlorine and repeated rinsing: Barrier, daily.", slug: "barrier" },
-  { img: "/img/montana.jpg", alt: "Hiker on a mountain ridge", when: "After sun, wind or cold", what: "When skin feels tight: Calm.", slug: "calm" },
+  { img: "/img/montana.jpg", alt: "Hiker on a mountain ridge", when: "After wind or cold", what: "When skin feels tight: Calm.", slug: "calm" },
   { img: "/img/pareja.jpg", alt: "Two people walking outdoors together", when: "Between hard weeks", what: "A surface reset: Renewal.", slug: "renewal" },
 ] as const;
 
@@ -36,15 +28,15 @@ export default function Home() {
           <div className="hero-copy" data-reveal>
             <p className="eyebrow">Performance skincare</p>
             <h1 id="hero-h" className="display" style={{ marginTop: 20 }}>{site.promise}</h1>
-            <p className="lead">Four goat milk-based formulas for skin that trains, sweats, travels and keeps going. Barrier and Calm are first. Join the waitlist and hear the day they launch.</p>
+            <p className="lead">Four goat milk-based formulas built around the moments skin goes through every day — training, cleansing, weather, travel and recovery.</p>
             <div className="cluster hero-ctas">
               <Link className="btn btn-primary" href="/products/barrier">{ctaLabel(barrier)}</Link>
-              <Link className="btn btn-secondary" href="/shop">See all four formulas</Link>
+              <Link className="btn btn-secondary" href="/shop">Explore the formulas</Link>
             </div>
           </div>
           <figure className="hero-pic">
-            <Image src={barrier.image!.src} alt={barrier.image!.alt} width={800} height={1200} priority sizes="(max-width: 1023px) 100vw, 36vw" />
-            <figcaption className="small">01 · Barrier. {barrier.price != null && !canBuy(barrier) ? `${money(barrier.price)} at launch.` : ""}</figcaption>
+            <Image src={barrier.images[0].src} alt={barrier.imageAlt} width={800} height={1200} priority sizes="(max-width: 1023px) 100vw, 36vw" />
+            <figcaption className="small">01 · Barrier. {statusLabel(barrier.status)}{barrier.retailPrice != null && !canBuy(barrier) ? ` · ${money(barrier.retailPrice)} launch price` : ""}</figcaption>
           </figure>
         </div>
       </section>
@@ -64,8 +56,9 @@ export default function Home() {
         <div className="split-copy" data-reveal>
           <p className="eyebrow">{site.longName}</p>
           <h2 id="m-h" className="h1" style={{ marginTop: 12 }}>The work nobody sees.</h2>
-          <p className="lines"><span>The 5 a.m. alarm.</span><span>The extra lap.</span><span>The skin that pays for it.</span></p>
-          <p style={{ marginTop: 24 }}>BDSG is skincare for people who show up daily, not only on race day. {site.institutional}</p>
+          <p className="lines"><span>The 5 a.m. alarm.</span><span>The extra lap.</span><span>The routine that keeps you going.</span></p>
+          <p style={{ marginTop: 24 }}>BDSG is skincare for people who keep showing up — daily, not only on race day. The summit matters, but the work happens during the climb.</p>
+          <p style={{ marginTop: 12, fontWeight: 600 }}>{site.institutional}</p>
           <Link className="btn-link" href="/about" style={{ marginTop: 16 }}>Why BDSG exists</Link>
         </div>
       </section>
@@ -91,7 +84,7 @@ export default function Home() {
       {/* E. Barrier feature */}
       <section className="section band surface" aria-labelledby="b-h">
         <div className="container split flip">
-          <figure className="split-media"><Image src={barrier.image!.src} alt={barrier.image!.alt} width={800} height={1200} sizes="(max-width: 1023px) 100vw, 50vw" /></figure>
+          <figure className="split-media"><Image src={barrier.images[0].src} alt={barrier.imageAlt} width={800} height={1200} sizes="(max-width: 1023px) 100vw, 50vw" /></figure>
           <div className="split-copy stack" data-reveal>
             <p className="eyebrow">01 · {barrier.role}</p>
             <h2 id="b-h" className="h1">{barrier.headline}</h2>
@@ -134,7 +127,7 @@ export default function Home() {
           <div className="plan plan-std">
             <h3 className="h3">Shop without membership</h3>
             <p className="plan-price">$0<small>to join</small></p>
-            <ul className="ticks"><li>Standard prices: {products.filter((p) => p.price != null).map((p) => `${p.name} ${money(p.price!)}`).join(", ")}</li><li>Free standard shipping from ${membership.standardShippingThreshold} (Terms of Sale §6)</li><li>15-day returns on unopened products</li></ul>
+            <ul className="ticks"><li>Launch prices: {products.filter((p) => p.retailPrice != null).map((p) => `${p.name} ${money(p.retailPrice!)}`).join(", ")}</li><li>Free standard shipping from ${membership.standardShippingThreshold} (Terms of Sale §6)</li><li>15-day returns on unopened products</li></ul>
             <div className="actions"><Link className="btn btn-secondary" href="/shop">Shop without membership</Link></div>
           </div>
           <div className="plan plan-gp">
@@ -142,8 +135,8 @@ export default function Home() {
             <p className="plan-price">${membership.initialPrice}<small>first year, then ${membership.renewalPrice}/year</small></p>
             <ul className="ticks">{membership.benefits.slice(0, 4).map((b) => <li key={b.title}><span><b>{b.title}.</b> {b.body}</span></li>)}</ul>
             <div className="actions">
-              <Link className="btn btn-primary" href="/greatness">See membership details</Link>
-              <p className="small muted">Renews automatically at ${membership.renewalPrice}/year until you cancel. Enrollment opens at launch.</p>
+              <p className="small">Renews automatically at ${membership.renewalPrice}/year until you cancel.</p>
+              <Link className="btn btn-primary" href="/greatness">{membership.enrollmentOpen ? "Join Greatness" : "Notify me when enrollment opens"}</Link>
             </div>
           </div>
         </div>
@@ -155,9 +148,9 @@ export default function Home() {
           <div className="split-media" style={{ borderRadius: 0 }}>
             <p className="eyebrow">Launch list</p>
             <h2 id="e-h" className="h1" style={{ marginTop: 12 }}>Stay ahead of the launch.</h2>
-            <p className="lead" style={{ marginTop: 20 }}>One email when Barrier and Calm go on sale. No daily newsletter.</p>
+            <p className="lead" style={{ marginTop: 20 }}>One email when the selected formula launches. Unsubscribe anytime.</p>
           </div>
-          <div className="split-copy"><Waitlist topic="launch" cta="Notify me" source="home-launch" askName /></div>
+          <div className="split-copy"><Waitlist chooseFormula cta="Notify me" source="home-launch" askName /></div>
         </div>
       </section>
     </>
