@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: { siteName: "BDSG", type: "website", locale: "en_US", images: [{ url: "/img/sitio-actual-barrier.jpg", width: 800, height: 1200, alt: "BDSG Barrier tube" }] },
   twitter: { card: "summary_large_image" },
 };
-export const viewport: Viewport = { themeColor: "#f7f5ef" };
+export const viewport: Viewport = { themeColor: "#faeedf" };
 
 // Public chrome (header, footer, bag, consent) lives in app/(site)/layout.tsx; /admin has its own.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
