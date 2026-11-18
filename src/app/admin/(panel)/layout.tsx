@@ -13,20 +13,23 @@ export default async function Panel({ children }: { children: React.ReactNode })
     client.database.from("contact_messages").select("id", { count: "exact", head: true }).eq("status", "new"),
     client.database.from("orders").select("id", { count: "exact", head: true }).eq("status", "paid").eq("fulfillment_status", "unfulfilled"),
   ]);
+  const initials = (user.email ?? "A").slice(0, 2).toUpperCase();
 
   return (
     <div className="adm">
-      <aside className="adm-side" aria-label="Admin navigation">
-        <Link className="adm-brand" href="/admin"><img src="/favicon.svg" alt="" width={24} height={24} />BDSG <small>Admin</small></Link>
+      <a className="adm-skip" href="#main">Saltar al contenido</a>
+      <aside className="adm-side" aria-label="Navegación del panel">
+        <Link className="adm-brand" href="/admin"><img src="/brand/bdsg-horizontal-blanco.svg" alt="BDSG" width={84} height={25} /><span>Admin</span></Link>
         <Nav counts={{ messages: msgs.count ?? 0, orders: orders.count ?? 0 }} />
         <div className="adm-side-foot">
           <PublishButton />
-          <a href="/" target="_blank" rel="noopener">Ver tienda ↗</a>
-          <span title={user.email}>{user.email}</span>
-          <form action={signOutAction}><button className="adm-link">Cerrar sesión</button></form>
+          <details className="adm-account">
+            <summary><span className="adm-avatar" aria-hidden="true">{initials}</span><span className="adm-account-name">BDSG Brands<small>{user.email}</small></span></summary>
+            <form action={signOutAction}><button className="adm-menu-item">Cerrar sesión</button></form>
+          </details>
         </div>
       </aside>
-      <main className="adm-main" id="main">{children}</main>
+      <main className="adm-main" id="main" tabIndex={-1}><div className="adm-page">{children}</div></main>
     </div>
   );
 }
