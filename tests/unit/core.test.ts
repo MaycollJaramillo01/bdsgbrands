@@ -1,14 +1,25 @@
 import { describe, expect, it } from "vitest";
+import { fromText, toText } from "../../src/app/admin/(panel)/policies/format";
 import { canBuy, ctaLabel, schemaAvailability, statusLabel } from "../../src/lib/availability";
-import { bySlug, money, products, validateCatalog, type Product } from "../../src/lib/products";
-import { badOrigin, parseContact, parseWaitlist, rateLimited } from "../../src/lib/validation";
+import { money, products, validateCatalog, type Product } from "../../src/lib/products";
+import { WAITLIST_TOPICS, badOrigin, parseContact, parseWaitlist, rateLimited } from "../../src/lib/validation";
 import { membership, settings } from "../../src/lib/site";
 import { publishableTestimonials } from "../../src/lib/compliance";
 import { validateCart } from "../../src/lib/commerce";
 import { legal } from "../../src/content/legal";
 
 const on = { ...settings, catalogLive: true, checkoutLive: true };
-const mk = (o: Partial<Product>): Product => ({ ...bySlug("barrier")!, ...o });
+// Fixture, independent of whatever the admin has in the catalog today.
+const base: Product = {
+  id: "t-barrier", slug: "barrier", name: "Barrier", sequence: "01", role: "Repair & Protect", headline: "Hold the line.",
+  status: "waitlist", retailPrice: 33, memberPrice: 29.7, currency: "USD", availabilityDate: null, waitlistEnabled: true,
+  purchaseEnabled: false, inventory: null, featuredIngredients: ["Goat Milk"], inci: null, size: null, directions: null, warnings: null,
+  shortDescription: "", longDescription: "", whenToUse: "", seoTitle: "", seoDescription: "", images: [], imageAlt: "",
+  relatedProducts: [], updatedAt: "",
+};
+const mk = (o: Partial<Product>): Product => ({ ...base, ...o });
+const unbuyable = products.find((p) => !canBuy(p));
+const topic = WAITLIST_TOPICS[0];
 
 describe("catalog status", () => {
   it("only sells available + purchaseEnabled + priced + checkout live", () => {
@@ -18,6 +29,7 @@ describe("catalog status", () => {
     expect(canBuy(mk({ status: "available", purchaseEnabled: false }), on)).toBe(false);
     expect(canBuy(mk({ status: "available", purchaseEnabled: true }), { ...on, checkoutLive: false })).toBe(false);
     expect(canBuy(mk({ status: "available", purchaseEnabled: true, retailPrice: null }), on)).toBe(false);
+    expect(canBuy(mk({ status: "available", purchaseEnabled: true, inventory: 0 }), on)).toBe(false);
   });
   it("rejects purchaseEnabled without available status at build time", () => {
     expect(() => validateCatalog([mk({ status: "waitlist", purchaseEnabled: true })])).toThrow();
@@ -38,33 +50,31 @@ describe("catalog status", () => {
   });
 });
 
-describe("REGRESSION: current confirmed state (change only with BDSG confirmation)", () => {
-  it("Barrier and Calm are waitlist, Renewal and Recovery coming soon, nothing purchasable", () => {
-    expect(bySlug("barrier")!.status).toBe("waitlist");
-    expect(bySlug("calm")!.status).toBe("waitlist");
-    expect(bySlug("renewal")!.status).toBe("coming_soon");
-    expect(bySlug("recovery")!.status).toBe("coming_soon");
+describe("REGRESSION: whatever the admin publishes, nothing unreleased can be sold", () => {
+  it("only status available + purchaseEnabled + priced + checkout live can show Add to bag or InStock", () => {
     for (const p of products) {
-      expect(p.purchaseEnabled).toBe(false);
-      expect(canBuy(p)).toBe(false);
-      expect(ctaLabel(p)).not.toMatch(/add to bag|buy|ready/i);
-      expect(schemaAvailability(p)).not.toBe("https://schema.org/InStock");
+      const sellable = p.status === "available" && p.purchaseEnabled && p.retailPrice != null && settings.catalogLive && settings.checkoutLive && (p.inventory == null || p.inventory > 0);
+      expect(canBuy(p)).toBe(sellable);
+      if (!sellable) {
+        expect(ctaLabel(p)).not.toMatch(/add to bag|buy|ready/i);
+        expect(schemaAvailability(p)).not.toBe("https://schema.org/InStock");
+      }
     }
-    expect(settings.checkoutLive).toBe(false);
-    expect(membership.enrollmentOpen).toBe(false);
   });
-  it("prices match the published values", () => {
-    expect([bySlug("barrier")!.retailPrice, bySlug("barrier")!.memberPrice]).toEqual([33, 29.7]);
-    expect([bySlug("calm")!.retailPrice, bySlug("calm")!.memberPrice]).toEqual([35, 31.5]);
-    expect(bySlug("renewal")!.retailPrice).toBeNull();
-    expect([membership.initialPrice, membership.renewalPrice, settings.standardFreeShippingThreshold, settings.memberFreeShippingThreshold]).toEqual([55, 35, 70, 50]);
+  it("membership enrollment needs both the switch and approved terms", () => {
+    expect(membership.enrollmentOpen).toBe(settings.membershipEnrollmentLive && membership.effectiveDate != null);
+  });
+  it("prices are sane", () => {
+    for (const p of products) if (p.memberPrice != null) expect(p.retailPrice).not.toBeNull();
+    expect(membership.renewalPrice).toBeLessThanOrEqual(membership.initialPrice);
     expect(money(29.7)).toBe("$29.70");
   });
 });
 
 describe("cart (server-side)", () => {
   it("rejects unavailable SKUs even if the client sends them", () => {
-    const r = validateCart([{ slug: "barrier", qty: 1 }]);
+    if (!unbuyable) return;
+    const r = validateCart([{ slug: unbuyable.slug, qty: 1 }]);
     expect(r.ok).toBe(false);
     expect(!r.ok && r.code).toBe("unavailable_item");
   });
@@ -76,10 +86,10 @@ describe("cart (server-side)", () => {
 
 describe("forms", () => {
   it("waitlist needs email, a known formula and explicit consent", () => {
-    expect(parseWaitlist({ email: "a@b.co", topic: "barrier" }).ok).toBe(false);
-    expect(parseWaitlist({ email: "nope", topic: "barrier", consent: true }).ok).toBe(false);
+    expect(parseWaitlist({ email: "a@b.co", topic }).ok).toBe(false);
+    expect(parseWaitlist({ email: "nope", topic, consent: true }).ok).toBe(false);
     expect(parseWaitlist({ email: "a@b.co", topic: "x", consent: true }).ok).toBe(false);
-    const r = parseWaitlist({ email: " A@B.co ", topic: "calm", consent: true });
+    const r = parseWaitlist({ email: " A@B.co ", topic, consent: true });
     expect(r.ok && r.data.email).toBe("a@b.co");
   });
   it("contact keeps safety fields only for reactions; privacy topic exists", () => {
@@ -103,6 +113,9 @@ describe("LEGAL + compliance gate (runs before every build)", () => {
   it("every published (non-draft) policy is free of placeholders", () => {
     for (const [slug, d] of Object.entries(legal)) if (!d.draft) expect(`${slug}: ${JSON.stringify(d)}`).not.toMatch(forbidden);
   });
+  it("a published policy has no unresolved (tbc) blocks", () => {
+    for (const [slug, d] of Object.entries(legal)) if (!d.draft) expect(d.blocks.filter((b) => b.t === "tbc").map((b) => `${slug}: ${b.text}`)).toEqual([]);
+  });
   it("draft text is only allowed on non-production builds", () => {
     if (process.env.NEXT_PUBLIC_SITE_ENV === "production") expect(settings.showDraftPolicies).toBe(false);
   });
@@ -113,4 +126,11 @@ describe("LEGAL + compliance gate (runs before every build)", () => {
       expect(text.toLowerCase()).not.toContain(bad);
   });
   it("publishes no unverified testimonials", () => expect(publishableTestimonials()).toEqual([]));
+});
+
+describe("admin policy editor", () => {
+  it("text format round-trips every stored policy without loss", () => {
+    const norm = (bs: { t: string; text: string; label?: string }[]) => bs.map(({ label, ...b }) => (label ? { ...b, label } : b));
+    for (const [slug, d] of Object.entries(legal)) expect([slug, fromText(toText(d.blocks))]).toEqual([slug, norm(d.blocks)]);
+  });
 });

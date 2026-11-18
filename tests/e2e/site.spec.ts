@@ -128,3 +128,15 @@ test("no horizontal overflow at 360px", async ({ page }) => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), path).toBe(true);
   }
 });
+
+test("admin is locked without a session", async ({ page, request }) => {
+  for (const path of ["/admin", "/admin/products", "/admin/orders", "/admin/settings"]) {
+    await page.goto(path);
+    await expect(page).toHaveURL(/\/admin\/login/);
+  }
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Entrar al panel");
+  expect((await request.get("/api/admin/waitlist.csv")).status()).toBe(403);
+  expect((await request.post("/api/admin/publish", { headers: { "content-type": "application/json" } })).status()).toBe(403);
+  const robots = await (await request.get("/admin/login")).headers();
+  expect(robots["x-robots-tag"] ?? "").toContain("noindex");
+});

@@ -11,7 +11,7 @@ export type CheckoutResult = { ok: true; url: string } | { ok: false; code: "una
 
 export interface CommerceAdapter {
   name: string;
-  createCheckout(lines: PricedLine[], ctx: { origin: string; orderId: string; subtotal: number }): Promise<CheckoutResult>;
+  createCheckout(lines: PricedLine[], ctx: { origin: string; orderId: string; subtotal: number; discount?: { code: string; amount: number } | null }): Promise<CheckoutResult>;
 }
 
 /** Server-side cart validation. Rejects anything not purchasable, whatever the client sent. */
@@ -27,6 +27,20 @@ export function validateCart(input: unknown): { ok: true; lines: PricedLine[]; s
   }
   const subtotal = Math.round(lines.reduce((s, l) => s + l.unitPrice * l.qty, 0) * 100) / 100;
   return { ok: true, lines, subtotal };
+}
+
+/** Server-side discount check (codes from /admin → Descuentos). The anon role can't list codes, only ask about one. */
+export async function applyDiscount(code: unknown, subtotal: number): Promise<{ code: string; amount: number } | null> {
+  if (typeof code !== "string" || !/^[A-Za-z0-9_-]{3,32}$/.test(code)) return null;
+  const base = process.env.NEXT_PUBLIC_INSFORGE_URL, key = process.env.NEXT_PUBLIC_INSFORGE_ANON_KEY;
+  if (!base || !key) return null;
+  const r = await fetch(`${base}/api/database/rpc/check_discount`, {
+    method: "POST", headers: { Authorization: `Bearer ${key}`, "content-type": "application/json" }, body: JSON.stringify({ p_code: code, p_subtotal: subtotal }), cache: "no-store",
+  }).catch(() => null);
+  const d = (await r?.json().catch(() => null))?.[0] as { code: string; kind: string; value: number } | undefined;
+  if (!d) return null;
+  const raw = d.kind === "percent" ? (subtotal * Number(d.value)) / 100 : Number(d.value);
+  return { code: d.code, amount: Math.min(subtotal, Math.round(raw * 100) / 100) };
 }
 
 const none: CommerceAdapter = {

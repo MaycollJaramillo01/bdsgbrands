@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { bySlug, money, products, shopOrder } from "@/lib/products";
-import { ProductCard, PriceLine, StatusBadge } from "@/components/Product";
+import { bySlug, featured, money, publicProducts as products } from "@/lib/products";
+import { ProductCard, ProductMedia, PriceLine, StatusBadge } from "@/components/Product";
 import { Waitlist } from "@/components/Waitlist";
 import { ingredients } from "@/lib/ingredients";
 import { AddButton } from "@/components/Cart";
@@ -18,8 +18,8 @@ const routine = [
 ] as const;
 
 export default function Home() {
-  const barrier = bySlug("barrier")!;
-  const ordered = shopOrder.map((s) => bySlug(s)!);
+  const barrier = featured;
+  const ordered = products;
   return (
     <>
       {/* A. Hero */}
@@ -30,13 +30,13 @@ export default function Home() {
             <h1 id="hero-h" className="display" style={{ marginTop: 20 }}>{site.promise}</h1>
             <p className="lead">Four goat milk-based formulas built around the moments skin goes through every day — training, cleansing, weather, travel and recovery.</p>
             <div className="cluster hero-ctas">
-              <Link className="btn btn-primary" href="/products/barrier">{ctaLabel(barrier)}</Link>
+              <Link className="btn btn-primary" href={`/products/${barrier.slug}`}>{ctaLabel(barrier)}</Link>
               <Link className="btn btn-secondary" href="/shop">Explore the formulas</Link>
             </div>
           </div>
           <figure className="hero-pic">
-            <Image src={barrier.images[0].src} alt={barrier.imageAlt} width={800} height={1200} priority sizes="(max-width: 1023px) 100vw, 36vw" />
-            <figcaption className="small">01 · Barrier. {statusLabel(barrier.status)}{barrier.retailPrice != null && !canBuy(barrier) ? ` · ${money(barrier.retailPrice)} launch price` : ""}</figcaption>
+            <ProductMedia p={barrier} priority sizes="(max-width: 1023px) 100vw, 36vw" />
+            <figcaption className="small">{barrier.sequence} · {barrier.name}. {statusLabel(barrier.status)}{barrier.retailPrice != null && !canBuy(barrier) ? ` · ${money(barrier.retailPrice)} launch price` : ""}</figcaption>
           </figure>
         </div>
       </section>
@@ -74,7 +74,7 @@ export default function Home() {
             <div className="ingredient" key={g.name}>
               <h3 className="h4">{g.name}</h3>
               <p>{g.body}</p>
-              <div className="tags">{g.in.map((s) => <Link className="chip" key={s} href={`/products/${s}`}>{bySlug(s)!.name}</Link>)}</div>
+              <div className="tags">{g.in.map((s) => <Link className="chip" key={s} href={`/products/${s}`}>{bySlug(s)?.name}</Link>)}</div>
             </div>
           ))}
         </div>
@@ -84,9 +84,9 @@ export default function Home() {
       {/* E. Barrier feature */}
       <section className="section band surface" aria-labelledby="b-h">
         <div className="container split flip">
-          <figure className="split-media"><Image src={barrier.images[0].src} alt={barrier.imageAlt} width={800} height={1200} sizes="(max-width: 1023px) 100vw, 50vw" /></figure>
+          <figure className="split-media"><ProductMedia p={barrier} sizes="(max-width: 1023px) 100vw, 50vw" /></figure>
           <div className="split-copy stack" data-reveal>
-            <p className="eyebrow">01 · {barrier.role}</p>
+            <p className="eyebrow">{barrier.sequence} · {barrier.role}</p>
             <h2 id="b-h" className="h1">{barrier.headline}</h2>
             <p className="lead">{barrier.longDescription}</p>
             <div className="cluster"><StatusBadge p={barrier} /><PriceLine p={barrier} /></div>
@@ -106,12 +106,12 @@ export default function Home() {
           <p>Pick by what your skin just went through.</p>
         </div>
         <ul className="routine" role="list" data-reveal>
-          {routine.map((r) => (
+          {routine.filter((r) => bySlug(r.slug) && bySlug(r.slug)!.status !== "draft").map((r) => (
             <li key={r.slug}>
               <figure><Image src={r.img} alt={r.alt} width={512} height={288} sizes="(max-width: 1023px) 50vw, 25vw" /></figure>
               <h3 className="h4">{r.when}</h3>
               <p>{r.what}</p>
-              <Link className="btn-link small" href={`/products/${r.slug}`}>{bySlug(r.slug)!.name}<span className="sr-only"> formula</span></Link>
+              <Link className="btn-link small" href={`/products/${r.slug}`}>{bySlug(r.slug)?.name}<span className="sr-only"> formula</span></Link>
             </li>
           ))}
         </ul>

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAdapter, validateCart } from "@/lib/commerce";
+import { applyDiscount, getAdapter, validateCart } from "@/lib/commerce";
 import { rateLimited } from "@/lib/validation";
 
 const ip = (req: Request) => req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "local";
@@ -15,6 +15,8 @@ export async function POST(req: Request) {
   const cart = validateCart(body?.lines);
   if (!cart.ok) return NextResponse.json(cart, { status: cart.code === "unavailable_item" ? 409 : 400 });
 
-  const res = await getAdapter().createCheckout(cart.lines, { origin: new URL(req.url).origin, orderId: crypto.randomUUID(), subtotal: cart.subtotal });
+  const discount = body?.discount ? await applyDiscount(body.discount, cart.subtotal) : null;
+  if (body?.discount && !discount) return NextResponse.json({ ok: false, code: "invalid_cart", message: "That discount code isn't valid." }, { status: 400 });
+  const res = await getAdapter().createCheckout(cart.lines, { origin: new URL(req.url).origin, orderId: crypto.randomUUID(), subtotal: cart.subtotal, discount });
   return NextResponse.json(res, { status: res.ok ? 200 : res.code === "checkout_unavailable" ? 503 : 502 });
 }

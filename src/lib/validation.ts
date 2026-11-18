@@ -1,6 +1,8 @@
 // Shared by the forms (client hints) and the API routes (the real check).
-export const WAITLIST_TOPICS = ["barrier", "renewal", "calm", "recovery", "greatness-program", "launch"] as const;
-export type WaitlistTopic = (typeof WAITLIST_TOPICS)[number];
+// Waitlist topics = every public catalog product that takes a waitlist, plus the program lists.
+import { publicProducts } from "./products";
+export const WAITLIST_TOPICS: string[] = [...publicProducts.filter((p) => p.waitlistEnabled).map((p) => p.slug), "greatness-program", "launch"];
+export type WaitlistTopic = string;
 
 export const CONTACT_TOPICS = [
   ["product", "Product question"],
@@ -26,7 +28,7 @@ export type Result<T> = { ok: true; data: T } | { ok: false; errors: Record<stri
 export function parseWaitlist(body: Record<string, unknown>): Result<{ email: string; first_name: string | null; topic: WaitlistTopic; source: string; consent: true }> {
   const errors: Record<string, string> = {};
   if (!isEmail(body.email)) errors.email = "Enter an email address like name@example.com.";
-  if (!WAITLIST_TOPICS.includes(body.topic as WaitlistTopic)) errors.topic = "Unknown waitlist.";
+  if (typeof body.topic !== "string" || !WAITLIST_TOPICS.includes(body.topic)) errors.topic = "Unknown waitlist.";
   if (body.consent !== true) errors.consent = "Check the box so we can email you at launch.";
   if (Object.keys(errors).length) return { ok: false, errors };
   return {

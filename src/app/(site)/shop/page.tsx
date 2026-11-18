@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { bySlug, shopOrder } from "@/lib/products";
+import { publicProducts } from "@/lib/products";
 import { ProductCard } from "@/components/Product";
 import { Crumbs } from "@/components/Crumbs";
 import { membership } from "@/lib/site";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function Shop() {
-  const ps = shopOrder.map((s) => bySlug(s)!);
+  const ps = publicProducts;
   return (
     <div className="container">
       <Crumbs items={[["/shop", "Shop"]]} />

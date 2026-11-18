@@ -1,0 +1,37 @@
+{
+ "id": 1,
+ "catalog_live": true,
+ "checkout_live": false,
+ "membership_enrollment_live": false,
+ "standard_free_shipping_threshold": 70,
+ "member_free_shipping_threshold": 50,
+ "support_email": "",
+ "privacy_policy_version": "2026-08-21",
+ "social": [
+  {
+   "href": "https://www.instagram.com/bdsg.official/",
+   "label": "Instagram"
+  },
+  {
+   "href": "https://www.tiktok.com/@bdsg.official",
+   "label": "TikTok"
+  },
+  {
+   "href": "https://www.facebook.com/profile.php?id=61586803785256",
+   "label": "Facebook"
+  },
+  {
+   "href": "https://x.com/BDSGofficial1",
+   "label": "X"
+  },
+  {
+   "href": "https://www.linkedin.com/company/bdsg-brands",
+   "label": "LinkedIn"
+  }
+ ],
+ "membership_initial_price": 55,
+ "membership_renewal_price": 35,
+ "membership_discount_max": 10,
+ "membership_effective_date": null,
+ "updated_at": "2026-11-18T03:35:03.42441+00:00"
+}

@@ -139,3 +139,11 @@ The tokens live in `src/app/globals.css`, and the rules are in `design/guia-de-d
   - **Layout:** container 1360px, reading width 720px.
 - **Grid:** 12, 8 and 4 columns.
 - **Components:** Header, Bag, ProductCard, ProductMedia, StatusBadge, PriceLine, Waitlist, ContactForm, Consent, Crumbs, and accordions built on native `<details>`.
+
+## 11. Admin suite (`/admin`)
+
+- **Access:** InsForge Auth (email + password, email verified by code). A user is an admin only if their verified email is in `public.admin_emails`; `public.is_admin()` enforces this in RLS on every table and on the `products` storage bucket. The UI check (`requireAdmin()`) is a second layer, not the only one.
+- **Modules:** Inicio (sales, to-ship, waitlist, "what's missing to sell"), Productos (full catalog model + image upload), Pedidos (payment/fulfillment status, tracking, notes), Clientes (aggregated from orders), Descuentos (validated server-side at checkout through `check_discount()`), Waitlist (filter, CSV export, delete), Mensajes (handled/reopen/delete, safety reports flagged), Políticas (plain-text block editor; a policy can't be published with TBC blocks or placeholder wording), Ajustes (site switches, thresholds, membership, support email, social).
+- **Publishing:** edits are saved immediately in InsForge. "Publicar cambios" calls a Vercel deploy hook (`VERCEL_DEPLOY_HOOK_URL`); the prebuild step snapshots the content into `src/data/*.json`, runs the unit tests (catalog, legal gate) and rebuilds the static site. A bad catalog or a published placeholder fails the build and the live site stays on the last good deploy.
+- **Database guards:** the `products` table repeats `validateCatalog()` as CHECK constraints (no purchase without `available` + price; member ≤ retail).
+- **BLOCKED BY BDSG:** orders only arrive once a payment provider is connected; refunds are issued in that provider and only recorded here.

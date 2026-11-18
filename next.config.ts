@@ -10,7 +10,7 @@ const csp = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline' ${GA} ${META}${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' data: blob: ${GA} ${META}`,
+  `img-src 'self' data: blob: ${process.env.NEXT_PUBLIC_INSFORGE_URL ?? ""} ${GA} ${META}`,
   "font-src 'self'",
   `connect-src 'self' ${process.env.NEXT_PUBLIC_INSFORGE_URL ?? ""} ${GA} ${META}`,
   PAY ? `frame-src ${PAY}` : "frame-src 'none'",
@@ -29,6 +29,8 @@ const old: [string, string][] = [
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
   poweredByHeader: false,
+  // Product photos uploaded in /admin are served from the InsForge storage host.
+  images: { remotePatterns: process.env.NEXT_PUBLIC_INSFORGE_URL ? [{ protocol: "https", hostname: new URL(process.env.NEXT_PUBLIC_INSFORGE_URL).hostname }] : [] },
   redirects: async () => old.map(([source, destination]) => ({ source, destination, statusCode: 301 as const })),
   headers: async () => [{
     source: "/:path*",

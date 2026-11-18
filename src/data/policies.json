@@ -1,7 +1,95 @@
-{
- "returns": {
+[
+ {
+  "slug": "shipping",
+  "title": "Shipping Policy",
+  "summary": "Where we ship, what it costs and when it arrives.",
+  "effective": "Not yet in effect",
+  "draft": true,
+  "blocks": [
+   {
+    "t": "h2",
+    "text": "1. Where we ship"
+   },
+   {
+    "t": "p",
+    "text": "BDSG ships direct-to-consumer orders to addresses in the United States."
+   },
+   {
+    "t": "tbc",
+    "text": "Confirm the destinations served: all 50 states, or the contiguous 48 only; and whether APO/FPO, PO boxes, Puerto Rico and other U.S. territories are accepted."
+   },
+   {
+    "t": "h2",
+    "text": "2. Shipping costs"
+   },
+   {
+    "t": "li",
+    "text": "standard shipping is free on qualifying direct-to-consumer orders of $70.00 or more, unless a different offer is displayed at checkout.",
+    "label": "Free shipping:"
+   },
+   {
+    "t": "li",
+    "text": "free shipping on eligible orders of $50.00 or more.",
+    "label": "Greatness Members:"
+   },
+   {
+    "t": "tbc",
+    "text": "Confirm the standard rate for orders under the free-shipping threshold (flat fee or carrier-calculated) and whether an expedited option is offered."
+   },
+   {
+    "t": "h2",
+    "text": "3. Processing and delivery times"
+   },
+   {
+    "t": "tbc",
+    "text": "Confirm order processing time (business days before an order ships), carriers used and estimated transit time."
+   },
+   {
+    "t": "p",
+    "text": "Delivery dates are estimates unless BDSG expressly guarantees otherwise. BDSG is not responsible for delays caused by circumstances outside its reasonable control, including carrier delays, weather, governmental actions, transportation interruptions, or inaccurate addresses supplied by the customer."
+   },
+   {
+    "t": "h2",
+    "text": "4. Your address"
+   },
+   {
+    "t": "p",
+    "text": "Customers are responsible for providing complete and accurate shipping information. Orders returned to BDSG because of an incorrect or incomplete address may be reshipped at the customer's cost or refunded less original shipping."
+   },
+   {
+    "t": "h2",
+    "text": "5. Taxes"
+   },
+   {
+    "t": "p",
+    "text": "Applicable sales taxes and shipping charges are disclosed at checkout before you pay."
+   },
+   {
+    "t": "h2",
+    "text": "6. Damaged, missing or incorrect orders"
+   },
+   {
+    "t": "p",
+    "text": "If your order arrives damaged, leaking, incorrect or incomplete, contact BDSG promptly with your order number and photographs. These problems are handled under Section 2 of the Return & Refund Policy and are not treated as ordinary returns."
+   },
+   {
+    "t": "h2",
+    "text": "7. Contact"
+   },
+   {
+    "t": "p",
+    "text": "BDSG Brands, LLC, West Jordan, Utah 84084. Website: bdsgbrands.com"
+   }
+  ],
+  "sort": 1,
+  "updated_at": "2026-11-18T03:35:02.822048+00:00"
+ },
+ {
+  "slug": "returns",
   "title": "Return & Refund Policy",
+  "summary": "Unopened products within 15 days. Damaged or wrong items are always handled.",
   "effective": "August 21, 2026",
+  "draft": false,
   "blocks": [
    {
     "t": "p",
@@ -17,33 +105,33 @@
    },
    {
     "t": "li",
-    "label": "Return Window:",
-    "text": "15 calendar days from the purchase date."
+    "text": "15 calendar days from the purchase date.",
+    "label": "Return Window:"
    },
    {
     "t": "li",
-    "label": "Condition Requirement:",
-    "text": "Product must be unopened and in its original, undamaged packaging."
+    "text": "Product must be unopened and in its original, undamaged packaging.",
+    "label": "Condition Requirement:"
    },
    {
     "t": "li",
-    "label": "Opened Product:",
-    "text": "Opened cosmetic and personal care products are not eligible for ordinary preference-based returns or exchanges."
+    "text": "Opened cosmetic and personal care products are not eligible for ordinary preference-based returns or exchanges.",
+    "label": "Opened Product:"
    },
    {
     "t": "li",
-    "label": "Proof of Purchase:",
-    "text": "Order confirmation, receipt, or Member account record is required."
+    "text": "Order confirmation, receipt, or Member account record is required.",
+    "label": "Proof of Purchase:"
    },
    {
     "t": "li",
-    "label": "Return Shipping:",
-    "text": "Customer is responsible for return shipping unless the product was defective or BDSG shipped the wrong item, or applicable law requires otherwise."
+    "text": "Customer is responsible for return shipping unless the product was defective or BDSG shipped the wrong item, or applicable law requires otherwise.",
+    "label": "Return Shipping:"
    },
    {
     "t": "li",
-    "label": "Refund Processing:",
-    "text": "Approved Retail or Greatness Member product refunds are ordinarily processed within 7 to 10 business days after BDSG receives and inspects the authorized return."
+    "text": "Approved Retail or Greatness Member product refunds are ordinarily processed within 7 to 10 business days after BDSG receives and inspects the authorized return.",
+    "label": "Refund Processing:"
    },
    {
     "t": "p",
@@ -155,48 +243,48 @@
    },
    {
     "t": "li",
-    "label": "Return Window:",
-    "text": "Return request must be submitted within 10 calendar days from the purchase date."
+    "text": "Return request must be submitted within 10 calendar days from the purchase date.",
+    "label": "Return Window:"
    },
    {
     "t": "li",
-    "label": "Authorization Required:",
-    "text": "Written authorization from BDSG is required before any Partner/Bulk product is shipped back. Unauthorized returns may be refused."
+    "text": "Written authorization from BDSG is required before any Partner/Bulk product is shipped back. Unauthorized returns may be refused.",
+    "label": "Authorization Required:"
    },
    {
     "t": "li",
-    "label": "Condition Requirement:",
-    "text": "Product must be unopened, untouched, in original resalable condition, and free from damage to outer packaging, labeling, or seals."
+    "text": "Product must be unopened, untouched, in original resalable condition, and free from damage to outer packaging, labeling, or seals.",
+    "label": "Condition Requirement:"
    },
    {
     "t": "li",
-    "label": "Restocking Fee:",
-    "text": "A 15% restocking fee applies to every approved Partner/Bulk return and is deducted from the refund, except where applicable law requires otherwise."
+    "text": "A 15% restocking fee applies to every approved Partner/Bulk return and is deducted from the refund, except where applicable law requires otherwise.",
+    "label": "Restocking Fee:"
    },
    {
     "t": "li",
-    "label": "Defect or Damage Claims:",
-    "text": "Report in writing within 5 calendar days after delivery and include photographs or other reasonable evidence."
+    "text": "Report in writing within 5 calendar days after delivery and include photographs or other reasonable evidence.",
+    "label": "Defect or Damage Claims:"
    },
    {
     "t": "li",
-    "label": "Non-Returnable Items:",
-    "text": "Opened, relabeled, repackaged, altered, expired/past-best-by, or non-original-packaging product is not eligible for return, except where applicable law requires a remedy."
+    "text": "Opened, relabeled, repackaged, altered, expired/past-best-by, or non-original-packaging product is not eligible for return, except where applicable law requires a remedy.",
+    "label": "Non-Returnable Items:"
    },
    {
     "t": "li",
-    "label": "No Market-Based Returns:",
-    "text": "No returns for slow sales, excess inventory, seasonal factors, changed demand, or market conditions."
+    "text": "No returns for slow sales, excess inventory, seasonal factors, changed demand, or market conditions.",
+    "label": "No Market-Based Returns:"
    },
    {
     "t": "li",
-    "label": "Return Shipping:",
-    "text": "Partner pays return shipping unless BDSG expressly agrees otherwise or applicable law requires otherwise."
+    "text": "Partner pays return shipping unless BDSG expressly agrees otherwise or applicable law requires otherwise.",
+    "label": "Return Shipping:"
    },
    {
     "t": "li",
-    "label": "Refund Processing:",
-    "text": "Approved refunds are ordinarily processed within 10 to 14 business days after BDSG receives and inspects the authorized return and applies the 15% restocking fee."
+    "text": "Approved refunds are ordinarily processed within 10 to 14 business days after BDSG receives and inspects the authorized return and applies the 15% restocking fee.",
+    "label": "Refund Processing:"
    },
    {
     "t": "p",
@@ -226,11 +314,134 @@
     "t": "p",
     "text": "For product returns, refund requests, or product problems, use the BDSG Contact or Returns process at bdsgbrands.com and include available order information. Greatness membership cancellations are governed by Section 6."
    }
-  ]
+  ],
+  "sort": 2,
+  "updated_at": "2026-11-18T03:35:02.822048+00:00"
  },
- "terms": {
+ {
+  "slug": "membership",
+  "title": "Greatness Program Membership Terms",
+  "summary": "$55 to join, $35 a year after that, renews automatically. How to cancel and when refunds apply.",
+  "effective": "Not yet in effect",
+  "draft": true,
+  "blocks": [
+   {
+    "t": "p",
+    "text": "These terms summarize the Greatness Program membership offered by BDSG Brands, LLC. Section 6 of the Return & Refund Policy governs membership fees and cancellations, and the BDSG Greatness Program & Partner Agreement controls where it applies."
+   },
+   {
+    "t": "tbc",
+    "text": "BDSG to supply the full Greatness Program & Partner Agreement (wholesale and referral reward rules) so it can be published here or linked."
+   },
+   {
+    "t": "h2",
+    "text": "1. What the membership is"
+   },
+   {
+    "t": "p",
+    "text": "The Greatness Program is a one-year membership valid for one full year from the date of enrollment."
+   },
+   {
+    "t": "li",
+    "text": "discounts of up to 10% on BDSG formulas.",
+    "label": "Member pricing:"
+   },
+   {
+    "t": "li",
+    "text": "on eligible orders of $50.00 or more.",
+    "label": "Free shipping:"
+   },
+   {
+    "t": "li",
+    "text": "early access to new product launches and limited editions.",
+    "label": "Priority access:"
+   },
+   {
+    "t": "li",
+    "text": "access to the Greatness Program community and monthly wellness content.",
+    "label": "Community and content:"
+   },
+   {
+    "t": "li",
+    "text": "a unique code to share; referral rewards follow the program rules.",
+    "label": "Referral code:"
+   },
+   {
+    "t": "h2",
+    "text": "2. Price and automatic renewal"
+   },
+   {
+    "t": "li",
+    "text": "$55.00, charged when you join.",
+    "label": "Initial enrollment:"
+   },
+   {
+    "t": "li",
+    "text": "$35.00 per year, charged automatically at the end of each membership year until you cancel.",
+    "label": "Annual renewal:"
+   },
+   {
+    "t": "p",
+    "text": "You agree to the automatic renewal by checking the renewal box when you join. For memberships subject to Utah Code Title 13, Chapter 70, BDSG sends a renewal notice at least 30 and not more than 60 days before renewal stating the renewal date, total renewal cost, cancellation options, and the cancellation deadline."
+   },
+   {
+    "t": "h2",
+    "text": "3. Cancelling and refunds"
+   },
+   {
+    "t": "li",
+    "text": "the $55.00 enrollment fee is refunded if BDSG receives a written cancellation request within 24 hours after the timestamp of enrollment. The membership and its benefits end immediately.",
+    "label": "Within 24 hours of joining:"
+   },
+   {
+    "t": "li",
+    "text": "the enrollment fee is non-refundable and not prorated, except where applicable law requires otherwise. Cancelling stops future renewals; benefits remain until the end of the paid term.",
+    "label": "After 24 hours:"
+   },
+   {
+    "t": "li",
+    "text": "cancellation must be received at least 24 hours before the scheduled renewal charge and no later than 8:00 PM Eastern Time (6:00 PM Mountain Time) on the cancellation-deadline date in your renewal notice.",
+    "label": "Before renewal:"
+   },
+   {
+    "t": "li",
+    "text": "the renewal may process automatically and the $35.00 renewal fee is non-refundable. No partial-year refunds or prorated credits, except where applicable law requires otherwise.",
+    "label": "Missed deadline:"
+   },
+   {
+    "t": "h2",
+    "text": "4. How to cancel"
+   },
+   {
+    "t": "p",
+    "text": "Use the Member account portal or the cancellation method identified on bdsgbrands.com. BDSG may also provide an email, web form, or other written electronic method."
+   },
+   {
+    "t": "h2",
+    "text": "5. Product returns for members"
+   },
+   {
+    "t": "p",
+    "text": "Members follow the same product-return rules as all customers: unopened products within 15 calendar days of purchase. Membership does not extend the return window."
+   },
+   {
+    "t": "h2",
+    "text": "6. Contact"
+   },
+   {
+    "t": "p",
+    "text": "BDSG Brands, LLC, West Jordan, Utah 84084. Website: bdsgbrands.com"
+   }
+  ],
+  "sort": 3,
+  "updated_at": "2026-11-18T03:35:02.822048+00:00"
+ },
+ {
+  "slug": "terms",
   "title": "Terms of Use & Sale",
+  "summary": "The rules for using this site and buying from BDSG Brands, LLC.",
   "effective": "August 21, 2026",
+  "draft": false,
   "blocks": [
    {
     "t": "p",
@@ -290,33 +501,33 @@
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Product availability or quantity limits"
+    "text": "Product availability or quantity limits",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Pricing, listing, or system errors"
+    "text": "Pricing, listing, or system errors",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Suspected fraud, unauthorized payment, identity misuse, or account manipulation"
+    "text": "Suspected fraud, unauthorized payment, identity misuse, or account manipulation",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Promotion abuse, purchase-limit circumvention, or excessive return activity"
+    "text": "Promotion abuse, purchase-limit circumvention, or excessive return activity",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Suspected unauthorized resale or marketplace activity"
+    "text": "Suspected unauthorized resale or marketplace activity",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Shipping restrictions, security concerns, or legal requirements"
+    "text": "Shipping restrictions, security concerns, or legal requirements",
+    "label": ""
    },
    {
     "t": "p",
@@ -400,43 +611,43 @@
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Violate applicable law or facilitate fraud"
+    "text": "Violate applicable law or facilitate fraud",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Submit knowingly false claims or intentionally false information"
+    "text": "Submit knowingly false claims or intentionally false information",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Create fake accounts or impersonate another person"
+    "text": "Create fake accounts or impersonate another person",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Manipulate purchases, pricing, promotions, returns, or rewards"
+    "text": "Manipulate purchases, pricing, promotions, returns, or rewards",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Submit fraudulent or knowingly false chargebacks"
+    "text": "Submit fraudulent or knowingly false chargebacks",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Attempt unauthorized access, introduce malicious code, or interfere with security"
+    "text": "Attempt unauthorized access, introduce malicious code, or interfere with security",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Scrape or harvest data unlawfully"
+    "text": "Scrape or harvest data unlawfully",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Misrepresent affiliation with BDSG or use BDSG intellectual property without authorization"
+    "text": "Misrepresent affiliation with BDSG or use BDSG intellectual property without authorization",
+    "label": ""
    },
    {
     "t": "h2",
@@ -538,11 +749,16 @@
     "t": "p",
     "text": "BDSG Brands, LLC West Jordan, Utah 84084 Website: bdsgbrands.com"
    }
-  ]
+  ],
+  "sort": 4,
+  "updated_at": "2026-11-18T03:35:02.822048+00:00"
  },
- "privacy": {
+ {
+  "slug": "privacy",
   "title": "Privacy Policy",
+  "summary": "What we collect, why, who we share it with and the choices you have.",
   "effective": "August 21, 2026",
+  "draft": false,
   "blocks": [
    {
     "t": "p",
@@ -558,43 +774,43 @@
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Name, email address, telephone number, billing and shipping address"
+    "text": "Name, email address, telephone number, billing and shipping address",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Account credentials and account preferences"
+    "text": "Account credentials and account preferences",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Order, return, refund, and purchase history"
+    "text": "Order, return, refund, and purchase history",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Greatness membership information and renewal status"
+    "text": "Greatness membership information and renewal status",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Referral activity and reward information"
+    "text": "Referral activity and reward information",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Partner status, resale documentation, tax or business information where applicable"
+    "text": "Partner status, resale documentation, tax or business information where applicable",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Customer service, complaint, product-safety, review, survey, or other communications"
+    "text": "Customer service, complaint, product-safety, review, survey, or other communications",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Marketing preferences and promotion entries"
+    "text": "Marketing preferences and promotion entries",
+    "label": ""
    },
    {
     "t": "h3",
@@ -610,33 +826,33 @@
    },
    {
     "t": "li",
-    "label": "",
-    "text": "IP address and approximate location derived from IP"
+    "text": "IP address and approximate location derived from IP",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Browser, operating system, device type, and device identifiers"
+    "text": "Browser, operating system, device type, and device identifiers",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Pages, products, links, and features viewed or used"
+    "text": "Pages, products, links, and features viewed or used",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Shopping cart, checkout, and conversion activity"
+    "text": "Shopping cart, checkout, and conversion activity",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Referring pages, campaign information, and advertising attribution"
+    "text": "Referring pages, campaign information, and advertising attribution",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Date, time, session, security, and diagnostic information"
+    "text": "Date, time, session, security, and diagnostic information",
+    "label": ""
    },
    {
     "t": "p",
@@ -648,83 +864,83 @@
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Process, fulfill, ship, and support orders"
+    "text": "Process, fulfill, ship, and support orders",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Process payments, refunds, fraud reviews, chargebacks, and transaction disputes"
+    "text": "Process payments, refunds, fraud reviews, chargebacks, and transaction disputes",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Create and manage accounts"
+    "text": "Create and manage accounts",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Administer Greatness membership and automatic renewal"
+    "text": "Administer Greatness membership and automatic renewal",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Apply Member and Partner/Bulk pricing"
+    "text": "Apply Member and Partner/Bulk pricing",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Administer referral incentives and detect referral abuse"
+    "text": "Administer referral incentives and detect referral abuse",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Verify Partner/Bulk eligibility and administer resale compliance where applicable"
+    "text": "Verify Partner/Bulk eligibility and administer resale compliance where applicable",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Provide customer service and product-safety support"
+    "text": "Provide customer service and product-safety support",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Send transactional and service communications"
+    "text": "Send transactional and service communications",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Send marketing communications where permitted"
+    "text": "Send marketing communications where permitted",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Personalize shopping experiences and product recommendations"
+    "text": "Personalize shopping experiences and product recommendations",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Measure website performance, advertising, and customer engagement"
+    "text": "Measure website performance, advertising, and customer engagement",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Detect, investigate, and prevent fraud, security incidents, counterfeiting, or abuse"
+    "text": "Detect, investigate, and prevent fraud, security incidents, counterfeiting, or abuse",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Maintain product traceability, complaint, legal, tax, accounting, and compliance records"
+    "text": "Maintain product traceability, complaint, legal, tax, accounting, and compliance records",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Establish, exercise, or defend legal claims"
+    "text": "Establish, exercise, or defend legal claims",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Comply with applicable legal and regulatory obligations"
+    "text": "Comply with applicable legal and regulatory obligations",
+    "label": ""
    },
    {
     "t": "p",
@@ -894,11 +1110,16 @@
     "t": "p",
     "text": "BDSG Brands, LLC West Jordan, Utah 84084 Website: bdsgbrands.com"
    }
-  ]
+  ],
+  "sort": 5,
+  "updated_at": "2026-11-18T03:35:02.822048+00:00"
  },
- "cookies": {
+ {
+  "slug": "cookies",
   "title": "Cookie Policy",
+  "summary": "The cookies this site uses and how to control them.",
   "effective": "August 21, 2026",
+  "draft": false,
   "blocks": [
    {
     "t": "p",
@@ -922,33 +1143,33 @@
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Shopping cart and checkout"
+    "text": "Shopping cart and checkout",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Payment processing and transaction security"
+    "text": "Payment processing and transaction security",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Account authentication"
+    "text": "Account authentication",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Fraud prevention and security"
+    "text": "Fraud prevention and security",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Network and session management"
+    "text": "Network and session management",
+    "label": ""
    },
    {
     "t": "li",
-    "label": "",
-    "text": "Remembering privacy selections"
+    "text": "Remembering privacy selections",
+    "label": ""
    },
    {
     "t": "p",
@@ -1058,6 +1279,8 @@
     "t": "p",
     "text": "Questions about cookies or tracking technologies may be submitted through the BDSG Contact or Privacy Request process at bdsgbrands.com."
    }
-  ]
+  ],
+  "sort": 6,
+  "updated_at": "2026-11-18T03:35:02.822048+00:00"
  }
-}
+]

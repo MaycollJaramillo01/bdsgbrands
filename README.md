@@ -44,12 +44,13 @@ Migrations are not rolled back automatically. Write a new forward migration inst
 
 | What | Where |
 |---|---|
-| Product data and status | `src/lib/products.ts`. Status drives every CTA through `src/lib/availability.ts` |
-| Membership prices and site config | `src/lib/site.ts` |
+| Admin panel | `/admin` (InsForge Auth; access = verified email listed in `public.admin_emails`). Edits catalog, orders, customers, waitlist, messages, discounts, policies and settings |
+| Product data and status | Table `products`, edited in `/admin`, snapshotted at build into `src/data/catalog.json` by `scripts/pull-content.mjs`. Status drives every CTA through `src/lib/availability.ts` |
+| Membership prices and site config | Table `site_settings` (`/admin/settings`), read in `src/lib/site.ts` |
 | Claims, testimonials, regulatory data | `src/lib/compliance.ts`. Empty until approved, and nothing renders from it until then |
 | Waitlist and contact APIs | `src/app/api/*`. Validation lives in `src/lib/validation.ts` |
 | Consent and analytics | `src/components/Consent.tsx`, `src/lib/analytics.ts` |
-| Legal texts | `src/content/legal.ts`. Drafts are noindex and labeled as not in effect |
+| Legal texts | Table `policies` (`/admin/policies`), read in `src/content/legal.ts`. Drafts never render publicly |
 | Design tokens | `src/app/globals.css`, documented in `design/guia-de-diseno.md` |
 | Launch blockers | `docs/BLOCKERS.md` |
 | Architecture (sitemap, state, SEO, a11y, privacy, commerce, redirects) | `docs/ARCHITECTURE.md` |

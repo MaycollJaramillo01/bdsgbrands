@@ -14,7 +14,7 @@ export function ProductMedia({ p, sizes, priority }: { p: Product; sizes: string
       <div className="tube">
         <img src="/brand/bdsg-apilado-negro.svg" alt="" />
         <b>{p.name}</b>
-        <span>{p.sequence} / 04 · {p.role}</span>
+        <span>{p.sequence} · {p.role}</span>
         <i />
       </div>
     </div>

@@ -1,11 +1,11 @@
 import type { Product, Status } from "./products";
 import { settings } from "./site";
 
-type P = Pick<Product, "status" | "purchaseEnabled" | "retailPrice">;
+type P = Pick<Product, "status" | "purchaseEnabled" | "retailPrice"> & { inventory?: number | null };
 
 /** The only gate for buying. Status, the product flag, a price AND the site-wide switches must all agree. */
 export const canBuy = (p: P, s = settings) =>
-  s.catalogLive && s.checkoutLive && p.status === "available" && p.purchaseEnabled && p.retailPrice != null;
+  s.catalogLive && s.checkoutLive && p.status === "available" && p.purchaseEnabled && p.retailPrice != null && (p.inventory == null || p.inventory > 0);
 
 export function statusLabel(s: Status): string {
   switch (s) {

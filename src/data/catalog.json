@@ -1,0 +1,180 @@
+[
+ {
+  "id": "bdsg-barrier",
+  "slug": "barrier",
+  "name": "Barrier",
+  "sequence": "01",
+  "role": "Repair & Protect",
+  "headline": "Hold the line.",
+  "status": "waitlist",
+  "retail_price": 33,
+  "member_price": 29.7,
+  "currency": "USD",
+  "availability_date": null,
+  "waitlist_enabled": true,
+  "purchase_enabled": false,
+  "inventory": null,
+  "featured_ingredients": [
+   "Goat Milk",
+   "Ceramide NP",
+   "Rice Peptides",
+   "Panthenol",
+   "Hyaluronic Acid"
+  ],
+  "inci": null,
+  "size": null,
+  "directions": null,
+  "warnings": null,
+  "short_description": "Supports moisture retention with goat milk, Ceramide NP, panthenol and hyaluronic acid.",
+  "long_description": "A daily formula built around goat milk, Ceramide NP, panthenol and hyaluronic acid to support moisture retention and everyday barrier care.",
+  "when_to_use": "Daily, morning or evening, and after cleansing on training days.",
+  "seo_title": "Barrier — Goat Milk & Ceramide NP Moisture Support",
+  "seo_description": "BDSG Barrier: goat milk, Ceramide NP, panthenol and hyaluronic acid to support moisture retention. $33.00 at launch. Join the waitlist.",
+  "images": [
+   {
+    "src": "/img/sitio-actual-barrier.jpg",
+    "width": 800,
+    "height": 1200
+   }
+  ],
+  "image_alt": "BDSG Barrier tube standing on stone beside rice and a dish of cream",
+  "related_products": [
+   "calm"
+  ],
+  "provider_price_id": null,
+  "sort": 1,
+  "updated_at": "2026-11-18T04:15:56.629721+00:00"
+ },
+ {
+  "id": "bdsg-calm",
+  "slug": "calm",
+  "name": "Calm",
+  "sequence": "03",
+  "role": "Soothe & Calm",
+  "headline": "Reset after the day takes its toll.",
+  "status": "waitlist",
+  "retail_price": 35,
+  "member_price": 31.5,
+  "currency": "USD",
+  "availability_date": null,
+  "waitlist_enabled": true,
+  "purchase_enabled": false,
+  "inventory": null,
+  "featured_ingredients": [
+   "Goat Milk",
+   "Beta-Glucan",
+   "Botanical Oils",
+   "Panthenol",
+   "Adaptogens"
+  ],
+  "inci": null,
+  "size": null,
+  "directions": null,
+  "warnings": null,
+  "short_description": "Beta-glucan, botanical oils and panthenol on goat milk for skin that feels dry or tight.",
+  "long_description": "A goat milk-based formula featuring beta-glucan, botanical oils, panthenol and adaptogens for skin that feels dry, tight or overexposed after long days and hard sessions.",
+  "when_to_use": "After sun, wind, cold or a long day, whenever skin feels tight.",
+  "seo_title": "Calm — Goat Milk & Beta-Glucan Comfort Formula",
+  "seo_description": "BDSG Calm: goat milk, beta-glucan, botanical oils and panthenol for skin that feels dry or tight. $35.00 at launch. Join the waitlist.",
+  "images": [
+   {
+    "src": "/img/sitio-actual-calm.jpg",
+    "width": 800,
+    "height": 1200
+   }
+  ],
+  "image_alt": "BDSG Calm tube on stone with chia seeds, a glass of milk and dropper bottles",
+  "related_products": [
+   "recovery"
+  ],
+  "provider_price_id": null,
+  "sort": 2,
+  "updated_at": "2026-11-17T00:00:00+00:00"
+ },
+ {
+  "id": "bdsg-renewal",
+  "slug": "renewal",
+  "name": "Renewal",
+  "sequence": "02",
+  "role": "Renew & Revitalize",
+  "headline": "Clear the surface. Keep the comfort.",
+  "status": "coming_soon",
+  "retail_price": null,
+  "member_price": null,
+  "currency": "USD",
+  "availability_date": null,
+  "waitlist_enabled": true,
+  "purchase_enabled": false,
+  "inventory": null,
+  "featured_ingredients": [
+   "Niacinamide",
+   "Honey",
+   "Propolis",
+   "Aloe",
+   "Papain Enzyme"
+  ],
+  "inci": null,
+  "size": null,
+  "directions": null,
+  "warnings": null,
+  "short_description": "Papain enzyme and niacinamide for surface renewal, with honey and aloe for comfort.",
+  "long_description": "Papain enzyme and niacinamide support surface renewal while goat milk, honey and aloe help maintain hydration and skin comfort.",
+  "when_to_use": "When skin texture needs a reset between hard training weeks.",
+  "seo_title": "Renewal — Niacinamide & Papain Enzyme Formula",
+  "seo_description": "BDSG Renewal: niacinamide, papain enzyme, honey, propolis and aloe. In development. Get notified at launch.",
+  "images": [],
+  "image_alt": "",
+  "related_products": [
+   "barrier"
+  ],
+  "provider_price_id": null,
+  "sort": 3,
+  "updated_at": "2026-11-17T00:00:00+00:00"
+ },
+ {
+  "id": "bdsg-recovery",
+  "slug": "recovery",
+  "name": "Recovery",
+  "sequence": "04",
+  "role": "Deep Recovery",
+  "headline": "For skin after the session.",
+  "status": "coming_soon",
+  "retail_price": null,
+  "member_price": null,
+  "currency": "USD",
+  "availability_date": null,
+  "waitlist_enabled": true,
+  "purchase_enabled": false,
+  "inventory": null,
+  "featured_ingredients": [
+   "Goat Milk",
+   "Magnesium PCA",
+   "Menthol",
+   "Ginger",
+   "Copaiba"
+  ],
+  "inci": null,
+  "size": null,
+  "directions": null,
+  "warnings": null,
+  "short_description": "Magnesium PCA, menthol and ginger on goat milk for a cool, comfortable finish.",
+  "long_description": "Goat milk, magnesium PCA, menthol, ginger and copaiba bring a cool, comfortable finish to post-activity skin care.",
+  "when_to_use": "Right after training, once you've showered.",
+  "seo_title": "Recovery — Magnesium PCA & Menthol Post-Activity Formula",
+  "seo_description": "BDSG Recovery: goat milk, magnesium PCA, menthol, ginger and copaiba for a cool finish. In development. Get notified at launch.",
+  "images": [
+   {
+    "src": "/img/sitio-actual-recovery.jpg",
+    "width": 800,
+    "height": 1200
+   }
+  ],
+  "image_alt": "BDSG Recovery tube on stone beside ginger root and a glass of milk",
+  "related_products": [
+   "renewal"
+  ],
+  "provider_price_id": null,
+  "sort": 4,
+  "updated_at": "2026-11-17T00:00:00+00:00"
+ }
+]
