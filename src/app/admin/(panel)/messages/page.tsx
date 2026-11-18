@@ -27,13 +27,12 @@ export default async function Messages({ searchParams }: { searchParams: Promise
   const { data, error } = await q;
 
   return (
-    <>
+    <div className="adm-wide">
       <Head title="Mensajes" />
       <Flash sp={sp} />
-      <div className="adm-row" style={{ marginBottom: 16 }}>
-        {[["", "Nuevos"], ["handled", "Atendidos"], ["all", "Todos"]].map(([k, l]) => <Link key={k} className="adm-btn" style={(sp.s ?? "") === k ? { background: "#e6e2d8" } : undefined} href={k ? `/admin/messages?s=${k}` : "/admin/messages"}>{l}</Link>)}
-      </div>
       {error && <p className="adm-alert">{error.message}</p>}
+      <div className="adm-table-wrap">
+        <div className="adm-toolbar"><nav className="adm-tabs" aria-label="Filtrar">{[["", "Nuevos"], ["handled", "Atendidos"], ["all", "Todos"]].map(([k, l]) => <Link key={k} href={k ? `/admin/messages?s=${k}` : "/admin/messages"} aria-current={(sp.s ?? "") === k ? "page" : undefined}>{l}</Link>)}</nav></div>
       {data?.length ? (
         <div className="adm-stack">
           {data.map((m) => (
@@ -52,7 +51,8 @@ export default async function Messages({ searchParams }: { searchParams: Promise
             </article>
           ))}
         </div>
-      ) : <div className="adm-card adm-empty">No hay mensajes {sp.s === "handled" ? "atendidos" : sp.s === "all" ? "" : "nuevos"}.</div>}
-    </>
+      ) : <div className="adm-empty">No hay mensajes {sp.s === "handled" ? "atendidos" : sp.s === "all" ? "" : "nuevos"}.</div>}
+      </div>
+    </div>
   );
 }

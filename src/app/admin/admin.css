@@ -180,3 +180,6 @@
 .adm-set p { margin: 4px 0 0; }
 .adm-savebar { display: flex; justify-content: flex-end; }
 @media (max-width: 860px) { .adm-set { grid-template-columns: 1fr; } }
+.adm-table-wrap .adm-table-wrap { box-shadow: none; border-radius: 0; }
+.adm-table-wrap > .adm-stack { padding: 12px; }
+.adm-table-wrap > .adm-stack > .adm-card { box-shadow: 0 0 0 1px #e3e3e3; }

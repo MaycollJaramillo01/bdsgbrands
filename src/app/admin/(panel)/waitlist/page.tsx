@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/insforge/server";
@@ -24,19 +25,13 @@ export default async function Waitlist({ searchParams }: { searchParams: Promise
   const counts = (all.data ?? []).reduce<Record<string, number>>((a, r) => ((a[r.topic] = (a[r.topic] ?? 0) + 1), a), {});
 
   return (
-    <>
+    <div className="adm-wide">
       <Head title="Waitlist"><a className="adm-btn" href={`/api/admin/waitlist.csv${sp.t ? `?t=${sp.t}` : ""}`}>Exportar CSV</a></Head>
       <Flash sp={sp} />
       <p className="adm-muted" style={{ marginBottom: 16 }}>Cada persona aceptó recibir un email cuando su fórmula salga. No las añadas a otro marketing sin un consentimiento nuevo.</p>
-      <form className="adm-row" style={{ marginBottom: 16 }}>
-        <select className="adm-input" style={{ maxWidth: 240 }} name="t" defaultValue={sp.t ?? ""} aria-label="Lista">
-          <option value="">Todas las listas ({Object.values(counts).reduce((a, b) => a + b, 0)})</option>
-          {Object.entries(counts).map(([t, n]) => <option key={t} value={t}>{t} ({n})</option>)}
-        </select>
-        <input className="adm-input" style={{ maxWidth: 240 }} name="q" placeholder="Buscar email" defaultValue={sp.q} aria-label="Buscar email" />
-        <button className="adm-btn">Filtrar</button>
-      </form>
       {error && <p className="adm-alert">{error.message}</p>}
+      <div className="adm-table-wrap">
+        <div className="adm-toolbar"><nav className="adm-tabs" aria-label="Filtrar por lista"><Link href="/admin/waitlist" aria-current={!sp.t ? "page" : undefined}>Todas ({Object.values(counts).reduce((a, b) => a + b, 0)})</Link>{Object.entries(counts).map(([t, n]) => <Link key={t} href={`/admin/waitlist?t=${t}`} aria-current={sp.t === t ? "page" : undefined}>{t} ({n})</Link>)}</nav><form role="search" className="adm-tsearch">{sp.t && <input type="hidden" name="t" value={sp.t} />}<input className="adm-input" name="q" placeholder="Buscar por email" defaultValue={sp.q} aria-label="Buscar en la waitlist por email" /></form></div>
       {data?.length ? (
         <div className="adm-table-wrap"><table className="adm-table">
           <thead><tr><th>Email</th><th>Nombre</th><th>Lista</th><th>Origen</th><th>Estado</th><th>Fecha</th><th><span className="sr-only">Acciones</span></th></tr></thead>
@@ -47,7 +42,8 @@ export default async function Waitlist({ searchParams }: { searchParams: Promise
             </tr>
           ))}</tbody>
         </table></div>
-      ) : <div className="adm-card adm-empty">Nadie en esta lista todavía.</div>}
-    </>
+      ) : <div className="adm-empty">Nadie en esta lista todavía.</div>}
+      </div>
+    </div>
   );
 }

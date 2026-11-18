@@ -17,15 +17,13 @@ export default async function Orders({ searchParams }: { searchParams: Promise<R
   const { data, error } = await q;
 
   return (
-    <>
+    <div className="adm-wide">
       <Head title="Pedidos" />
       <Flash sp={sp} />
       <p className="adm-warn" style={{ marginBottom: 16 }}>Los pedidos llegan aquí cuando el checkout esté activo con un proveedor de pago (pendiente de confirmar por BDSG). Los reembolsos se hacen en el proveedor; aquí solo se registran.</p>
-      <div className="adm-row" style={{ marginBottom: 16 }}>
-        {FILTERS.map(([k, l]) => <Link key={k} className="adm-btn" aria-current={(sp.f ?? "") === k ? "page" : undefined} style={(sp.f ?? "") === k ? { background: "#e6e2d8" } : undefined} href={k ? `/admin/orders?f=${k}` : "/admin/orders"}>{l}</Link>)}
-        <form><input className="adm-input" name="q" placeholder="Buscar email" defaultValue={sp.q} aria-label="Buscar por email" /></form>
-      </div>
       {error && <p className="adm-alert">{error.message}</p>}
+      <div className="adm-table-wrap">
+        <div className="adm-toolbar"><nav className="adm-tabs" aria-label="Filtrar">{FILTERS.map(([k, l]) => <Link key={k} href={k ? `/admin/orders?f=${k}` : "/admin/orders"} aria-current={(sp.f ?? "") === k ? "page" : undefined}>{l}</Link>)}</nav><form role="search" className="adm-tsearch">{sp.f && <input type="hidden" name="f" value={sp.f} />}<input className="adm-input" name="q" placeholder="Buscar por email" defaultValue={sp.q} aria-label="Buscar pedidos por email" /></form></div>
       {data?.length ? (
         <div className="adm-table-wrap"><table className="adm-table">
           <thead><tr><th>Pedido</th><th>Fecha</th><th>Cliente</th><th>Pago</th><th>Envío</th><th className="adm-num">Artículos</th><th className="adm-num">Total</th></tr></thead>
@@ -41,7 +39,8 @@ export default async function Orders({ searchParams }: { searchParams: Promise<R
             </tr>
           ))}</tbody>
         </table></div>
-      ) : <div className="adm-card adm-empty">Todavía no hay pedidos{sp.f ? " con este filtro" : ""}.</div>}
-    </>
+      ) : <div className="adm-empty">Todavía no hay pedidos{sp.f ? " con este filtro" : ""}.</div>}
+      </div>
+    </div>
   );
 }
