@@ -38,7 +38,7 @@ export default async function EditPolicy({ params, searchParams }: { params: Pro
   if (!p) notFound();
   return (
     <>
-      <Head title={p.title}><Link className="adm-btn" href="/admin/policies">Volver</Link></Head>
+      <Head title={p.title} back="/admin/policies" />
       <Flash sp={sp} />
       <form action={save} className="adm-two">
         <input type="hidden" name="slug" value={p.slug} />

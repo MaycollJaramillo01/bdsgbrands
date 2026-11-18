@@ -51,7 +51,7 @@ export function ProductForm({ row, isNew, others }: { row: Row; isNew: boolean; 
   const move = (i: number, d: number) => setImages((xs) => { const ys = [...xs]; const [x] = ys.splice(i, 1); ys.splice(Math.max(0, Math.min(ys.length, i + d)), 0, x); return ys; });
 
   return (
-    <form action={action} className="adm-two" noValidate>
+    <form id="product-form" action={action} className="adm-two" noValidate>
       <input type="hidden" name="_new" value={isNew ? "1" : "0"} />
       <input type="hidden" name="id" value={String(row?.id ?? "")} />
       <input type="hidden" name="images" value={JSON.stringify(images)} />

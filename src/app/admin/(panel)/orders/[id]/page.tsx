@@ -28,7 +28,7 @@ export default async function Order({ params, searchParams }: { params: Promise<
 
   return (
     <>
-      <Head title={`Pedido #${String(o.id).slice(0, 8)}`}><Link className="adm-btn" href="/admin/orders">Volver</Link></Head>
+      <Head title={`Pedido #${String(o.id).slice(0, 8)}`} back="/admin/orders" />
       <Flash sp={sp} />
       <div className="adm-two">
         <div className="adm-stack">

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/insforge/server";
 import { Flash, Head } from "../../ui";
@@ -20,18 +19,16 @@ export default async function EditProduct({ params, searchParams }: { params: Pr
 
   return (
     <>
-      <Head title={isNew ? "Nuevo producto" : p!.name}>
+      <Head title={isNew ? "Agregar producto" : p!.name} back="/admin/products">
         {!isNew && <a className="adm-btn" href={`/products/${p!.slug}`} target="_blank" rel="noopener">Ver en tienda ↗</a>}
-        <Link className="adm-btn" href="/admin/products">Volver</Link>
+        <button className="adm-btn adm-btn-primary" form="product-form">{isNew ? "Guardar" : "Guardar"}</button>
       </Head>
       <Flash sp={sp} />
       <ProductForm row={p} isNew={isNew} others={(all ?? []).filter((o) => o.slug !== p?.slug)} />
       {!isNew && (
-        <form action={deleteProduct} className="adm-card" style={{ marginTop: 24 }}>
+        <form action={deleteProduct} className="adm-danger-zone">
           <input type="hidden" name="id" value={p!.id} />
-          <h2 className="adm-h2">Eliminar producto</h2>
-          <p className="adm-muted">Se borra de la base de datos. Si solo quieres ocultarlo, cambia el estado a «Borrador» o «Descontinuado».</p>
-          <div style={{ marginTop: 10 }}><Confirm message={`¿Eliminar ${p!.name}? No se puede deshacer.`}>Eliminar {p!.name}</Confirm></div>
+          <Confirm className="adm-btn adm-btn-critical" message={`¿Eliminar ${p!.name}? No se puede deshacer. Si solo quieres ocultarlo, cambia el estado a «Borrador».`}>Eliminar producto</Confirm>
         </form>
       )}
     </>

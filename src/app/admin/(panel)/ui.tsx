@@ -1,3 +1,4 @@
+import Link from "next/link";
 // Shared admin bits: Spanish labels for stored values, formatting, pills.
 export const STATUS_ES: Record<string, string> = {
   draft: "Borrador", coming_soon: "Próximamente", waitlist: "Waitlist", available: "A la venta", sold_out: "Agotado", discontinued: "Descontinuado",
@@ -17,8 +18,8 @@ export function Pill({ s, label }: { s: string; label?: string }) {
   return <span className="adm-pill" data-s={s}>{label ?? STATUS_ES[s] ?? s}</span>;
 }
 
-export function Head({ title, children }: { title: string; children?: React.ReactNode }) {
-  return <div className="adm-head"><h1 className="adm-h1">{title}</h1>{children && <div className="adm-row">{children}</div>}</div>;
+export function Head({ title, back, children }: { title: string; back?: string; children?: React.ReactNode }) {
+  return <div className="adm-head"><div className="adm-title">{back && <Link className="adm-back" href={back} aria-label="Volver"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10H4m5-5-5 5 5 5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg></Link>}<h1 className="adm-h1">{title}</h1></div>{children && <div className="adm-row">{children}</div>}</div>;
 }
 
 export function Flash({ sp }: { sp: Record<string, string | string[] | undefined> }) {
