@@ -48,7 +48,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 {site.social.map((s) => <li key={s.href}><a href={s.href} rel="noopener" target="_blank">{s.label}<span className="sr-only"> (opens in a new tab)</span></a></li>)}
               </ul></nav>
             </div>
-            <p className="footer-word" aria-hidden="true">BDSG</p>
             <div className="footer-bottom">
               <span>© 2026 {site.entity}</span>
               <span className="cluster" style={{ gap: "4px 20px" }}>
