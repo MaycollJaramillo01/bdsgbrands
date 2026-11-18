@@ -122,20 +122,14 @@
   "when_to_use": "When skin texture needs a reset between hard training weeks.",
   "seo_title": "Renewal — Niacinamide & Papain Enzyme Formula",
   "seo_description": "BDSG Renewal: niacinamide, papain enzyme, honey, propolis and aloe. In development. Get notified at launch.",
-  "images": [
-   {
-    "src": "/img/pareja.jpg",
-    "width": 512,
-    "height": 288
-   }
-  ],
-  "image_alt": "[TEST DATA] Two people walking outdoors (placeholder image, not the Renewal product)",
+  "images": [],
+  "image_alt": "",
   "related_products": [
    "barrier"
   ],
   "provider_price_id": null,
   "sort": 3,
-  "updated_at": "2026-11-18T04:36:48.879349+00:00"
+  "updated_at": "2026-11-18T15:36:07.451123+00:00"
  },
  {
   "id": "bdsg-recovery",
