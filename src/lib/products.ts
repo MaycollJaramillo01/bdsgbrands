@@ -33,7 +33,7 @@ export type Product = {
   images: Image[];
   imageAlt: string;
   relatedProducts: Slug[];
-  stripePriceId?: string;
+  providerPriceId?: string;
   updatedAt: string;
 };
 

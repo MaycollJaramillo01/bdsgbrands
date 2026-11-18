@@ -23,7 +23,7 @@ export function validateCart(input: unknown): { ok: true; lines: PricedLine[]; s
     const qty = Number(raw?.qty);
     if (!p || !Number.isInteger(qty) || qty < 1 || qty > 10) return { ok: false, code: "invalid_cart", message: "Your bag has an invalid item." };
     if (!canBuy(p)) return { ok: false, code: "unavailable_item", slug: p.slug, message: `${p.name} isn't available to buy yet.` };
-    lines.push({ slug: p.slug, qty, unitPrice: p.retailPrice!, priceId: p.stripePriceId });
+    lines.push({ slug: p.slug, qty, unitPrice: p.retailPrice!, priceId: p.providerPriceId });
   }
   const subtotal = Math.round(lines.reduce((s, l) => s + l.unitPrice * l.qty, 0) * 100) / 100;
   return { ok: true, lines, subtotal };

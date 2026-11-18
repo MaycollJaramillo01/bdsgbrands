@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
-const GA = "https://www.googletagmanager.com https://*.google-analytics.com";
-const META = "https://connect.facebook.net https://www.facebook.com";
+// Only vendors that are actually configured get CSP access.
+const GA = process.env.NEXT_PUBLIC_GA_ID ? "https://www.googletagmanager.com https://*.google-analytics.com" : "";
+const META = process.env.NEXT_PUBLIC_META_PIXEL_ID ? "https://connect.facebook.net https://www.facebook.com" : "";
+// BLOCKED BY BDSG: add the checkout provider's origin here once confirmed.
+const PAY = process.env.COMMERCE_CHECKOUT_ORIGIN ?? "";
 const csp = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline' ${GA} ${META}${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""}`,
@@ -10,12 +13,12 @@ const csp = [
   `img-src 'self' data: blob: ${GA} ${META}`,
   "font-src 'self'",
   `connect-src 'self' ${process.env.NEXT_PUBLIC_INSFORGE_URL ?? ""} ${GA} ${META}`,
-  "frame-src https://checkout.stripe.com",
-  "form-action 'self' https://checkout.stripe.com",
+  PAY ? `frame-src ${PAY}` : "frame-src 'none'",
+  `form-action 'self' ${PAY}`,
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "object-src 'none'",
-].join("; ");
+].map((d) => d.replace(/\s+/g, " ").trim()).join("; ");
 
 const old: [string, string][] = [
   ["/formulas/:slug", "/products/:slug"],
@@ -34,7 +37,7 @@ const nextConfig: NextConfig = {
       { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
       { key: "X-Content-Type-Options", value: "nosniff" },
       { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-      { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(self \"https://checkout.stripe.com\")" },
+      { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
       { key: "X-Frame-Options", value: "DENY" },
       ...(process.env.NEXT_PUBLIC_SITE_ENV === "production" ? [] : [{ key: "X-Robots-Tag", value: "noindex, nofollow" }]),
     ],

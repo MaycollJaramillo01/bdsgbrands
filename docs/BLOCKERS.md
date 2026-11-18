@@ -24,6 +24,8 @@ These are not resolved arbitrarily. Each one is held off by a switch until BDSG 
 - [ ] Warnings (packaging-approved wording) → `warnings: null`
 - [ ] Manufacturer / Responsible Person data → `regulatory` in `src/lib/compliance.ts`
 - [ ] Claims substantiation (current copy avoids every clinical claim) → `claims` in `src/lib/compliance.ts`
+- [ ] Apple touch icon (PNG of the approved mark)
+- [ ] GitHub secret scanning: turn on in the repo settings (Dependabot is configured)
 - [ ] Commerce provider confirmed → adapter in `src/lib/commerce.ts`; `NEXT_PUBLIC_CHECKOUT_LIVE` stays off until then
 - [ ] Tax solution (e.g. Stripe Tax)
 - [ ] Fulfillment provider

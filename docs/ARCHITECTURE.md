@@ -106,7 +106,7 @@ The real provider adapter will be added once BDSG confirms the provider; that is
 
 ## 8. Security
 
-- **Headers** (`next.config.ts`): a CSP that allows only self plus the configured vendors, HSTS, nosniff, `frame-ancestors 'none'` and `X-Frame-Options: DENY`, a Referrer-Policy and a Permissions-Policy.
+- **Headers** (`next.config.ts`): a CSP that allows only self plus vendors whose IDs are set (GA, Meta, `COMMERCE_CHECKOUT_ORIGIN`), HSTS, nosniff, `frame-ancestors 'none'` and `X-Frame-Options: DENY`, a Referrer-Policy and a Permissions-Policy.
 - **APIs:** each endpoint checks for same origin and a JSON content type (the CSRF guard), applies a rate limit, validates on the server and includes a honeypot field.
 - **Secrets:** no secret keys reach the browser, since only the anonymous, insert-only InsForge key is public. InsForge applies row-level security with INSERT-only grants.
 - **Errors:** responses never include stack traces, and no personal data is logged.

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Crumbs } from "@/components/Crumbs";
+import { TrackView } from "@/components/TrackView";
 import { Waitlist } from "@/components/Waitlist";
 import { membership } from "@/lib/site";
 
@@ -14,6 +15,7 @@ export default function Greatness() {
   const open = membership.enrollmentOpen;
   return (
     <div className="container">
+      <TrackView event="view_membership" />
       <Crumbs items={[["/greatness", "Greatness Program"]]} />
       <header className="page-hero read">
         <p className="eyebrow">Optional membership</p>
