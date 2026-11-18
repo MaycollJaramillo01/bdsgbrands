@@ -50,3 +50,30 @@ test("product JSON-LD has no Offer for waitlist items", async ({ page }) => {
   expect(product.offers).toBeUndefined();
   expect(product.aggregateRating).toBeUndefined();
 });
+
+for (const slug of ["barrier", "calm", "renewal", "recovery"]) {
+  test(`no add-to-cart on unavailable ${slug}`, async ({ page }) => {
+    await page.goto(`/products/${slug}`);
+    await expect(page.getByText(/add to bag/i)).toHaveCount(0);
+  });
+}
+
+test("draft policies never show internal notes", async ({ page }) => {
+  for (const s of ["shipping", "membership"]) {
+    await page.goto(`/legal/${s}`);
+    await expect(page.getByText(/to confirm before launch/i)).toHaveCount(0);
+    await expect(page.getByText("This policy is not published yet.")).toBeVisible();
+  }
+});
+
+for (const path of ["/", "/shop", "/products/barrier", "/greatness", "/faq", "/contact"]) {
+  test(`axe WCAG 2.2 AA: ${path}`, async ({ page }) => {
+    const { default: AxeBuilder } = await import("@axe-core/playwright");
+    await page.goto(path);
+    await page.getByRole("button", { name: "Reject all" }).click();
+    await page.evaluate(() => document.querySelectorAll(".reveal").forEach((e) => e.classList.add("in")));
+    await page.waitForTimeout(1200);
+    const r = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
+    expect(r.violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).slice(0, 3).join(", ")}`)).toEqual([]);
+  });
+}

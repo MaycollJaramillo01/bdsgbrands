@@ -51,7 +51,7 @@ export default function Greatness() {
           <details><summary>Cancelling</summary><div className="acc-body"><p>Cancel within 24 hours of joining for a full refund of the enrollment fee. After that, cancelling stops future renewals and benefits last until the end of the paid year.</p></div></details>
           <details><summary>Discount and shipping details</summary><div className="acc-body"><p>Member pricing is up to {membership.discountMax}% off formulas. Free shipping applies to eligible orders of ${membership.shippingThreshold} or more.</p></div></details>
         </div>
-        <p className="small muted" style={{ marginTop: 24 }}>Full <Link className="inline" href="/legal/membership">Membership Terms</Link> (draft, not yet in effect).</p>
+        <p className="small muted" style={{ marginTop: 24 }}>Full <Link className="inline" href="/legal/membership">Membership Terms</Link> will be published before enrollment opens.</p>
       </section>
     </div>
   );

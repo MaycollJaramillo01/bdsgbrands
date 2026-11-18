@@ -100,7 +100,7 @@ export default async function ProductPage({ params }: P) {
       {p.price != null && p.memberPrice != null && (
         <section className="section" aria-labelledby="mem-h">
           <h2 id="mem-h" className="h2">With or without membership</h2>
-          <div className="table-wrap" style={{ marginTop: 32, maxWidth: 880 }}>
+          <div className="table-wrap" tabIndex={0} role="region" aria-labelledby="mem-h" style={{ marginTop: 32, maxWidth: 880 }}>
             <table className="t">
               <thead><tr><th scope="col"></th><th scope="col">Standard</th><th scope="col">Greatness member</th></tr></thead>
               <tbody>

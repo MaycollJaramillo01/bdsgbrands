@@ -26,7 +26,7 @@ export default function Science() {
 
       <section className="section" aria-labelledby="by-h">
         <h2 id="by-h" className="h2">Formula by formula</h2>
-        <div className="table-wrap" style={{ marginTop: 32 }}>
+        <div className="table-wrap" tabIndex={0} role="region" aria-labelledby="by-h" style={{ marginTop: 32 }}>
           <table className="t">
             <thead><tr><th scope="col">Formula</th><th scope="col">Role</th><th scope="col">Featured ingredients</th></tr></thead>
             <tbody>

@@ -42,8 +42,15 @@ export default async function LegalPage({ params }: { params: Promise<{ slug: st
         <h1 className="h1">{d.title}</h1>
         <p className="lead">{d.summary}</p>
         <p className="small muted">Effective date: {d.effective}</p>
-        {d.draft && <p className="draft" role="note"><b>Draft — not yet in effect.</b> This policy is waiting on details from BDSG and does not apply to any order yet.</p>}
-        <div className="legal-body">{out}</div>
+        {d.draft ? (
+          // Unapproved drafts never render their text publicly; the full draft stays in src/content/legal.ts.
+          <div className="draft" role="note">
+            <p><b>This policy is not published yet.</b> It will appear here once it is approved, before any order or enrollment is accepted.</p>
+            <p style={{ marginTop: 8 }}>Questions now? <Link className="inline" href="/contact">Contact us</Link>.</p>
+          </div>
+        ) : (
+          <div className="legal-body">{out}</div>
+        )}
       </article>
     </div>
   );
