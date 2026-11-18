@@ -3,12 +3,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { bySlug, money, publicProducts } from "@/lib/products";
 import { canBuy, schemaAvailability } from "@/lib/availability";
-import { ProductMedia } from "@/components/Product";
+import { ProductCard, ProductMedia, PriceLine, StatusBadge } from "@/components/Product";
 import { AddButton } from "@/components/Cart";
 import { Waitlist } from "@/components/Waitlist";
 import { Crumbs } from "@/components/Crumbs";
 import { TrackView } from "@/components/TrackView";
-import { membership, settings, site } from "@/lib/site";
+import { membership, site } from "@/lib/site";
 
 type P = { params: Promise<{ slug: string }> };
 export const generateStaticParams = () => publicProducts.map((p) => ({ slug: p.slug }));
@@ -49,6 +49,7 @@ function disclosure(p: NonNullable<ReturnType<typeof bySlug>>) {
 export default async function ProductPage({ params }: P) {
   const p = bySlug((await params).slug);
   if (!p || p.status === "draft") notFound();
+  const related = p.relatedProducts.map((s) => bySlug(s)!).filter((r) => r.status !== "draft");
   const avail = schemaAvailability(p);
   const ld = {
     "@context": "https://schema.org",
@@ -65,99 +66,83 @@ export default async function ProductPage({ params }: P) {
 
   const faqs: [string, React.ReactNode][] = [
     [`When does ${p.name} launch?`, canBuy(p) ? "It's available now." : "No launch date has been announced. Join the list on this page and we'll email you when it launches."],
-    [`What is in ${p.name}?`, <>Featured ingredients: {p.featuredIngredients.join(", ")}. {p.inci ? "The full list is on the label above." : PENDING.inci}</>],
-    [`How big is the tube?`, p.size ?? PENDING.size],
+    [`What is in ${p.name}?`, <>Featured ingredients: {p.featuredIngredients.join(", ")}. {p.inci ? "The full list is above." : PENDING.inci}</>],
     ["Do I need a membership to buy?", <>No. The Greatness Program is optional. <Link key="g" className="inline" href="/greatness">See what it includes</Link>.</>],
     ["What if I have a reaction?", <>Stop using the product and seek medical help if needed. Then <Link key="c" className="inline" href="/contact">tell us</Link> using the &quot;Skin reaction or product safety&quot; topic.</>],
-    ["Can I return it?", <>Unopened products can be returned within 15 days. <Link key="r" className="inline" href="/legal/returns">Return Policy</Link>.</>],
   ];
-  const climb = [...publicProducts].sort((x, y) => x.sequence.localeCompare(y.sequence));
-  const step = climb.findIndex((x) => x.slug === p.slug) + 1;
-  const label: [string, string][] = [["Directions", p.directions ?? PENDING.directions], ["Warnings", p.warnings ?? PENDING.warnings], ["Ingredients (INCI)", p.inci ?? PENDING.inci], ["Size", p.size ?? PENDING.size]];
-  const notify = !canBuy(p) && p.waitlistEnabled && p.status !== "discontinued";
 
   return (
-    <div className="pd">
+    <div className="container">
       <TrackView event="view_product" params={{ item_id: p.slug }} />
-      <div className="sr-only"><Crumbs items={[["/shop", "Shop"], [`/products/${p.slug}`, p.name]]} /></div>
-
-      <div className="pd-mosaic">
-        <div className="pd-m-product"><ProductMedia p={p} sizes="(max-width: 767px) 66vw, 34vw" priority /></div>
-        <img className="pd-m-photo pd-m-wide" src="/img/montana.jpg" alt="Mountain ridge above the tree line" width={512} height={288} />
-        <span className="pd-m-tile pd-m-plum" aria-hidden="true" />
-        <img className="pd-m-photo" src="/img/gimnasio.jpg" alt="Athlete training in a gym" width={512} height={288} />
-        <span className="pd-m-tile pd-m-haze" aria-hidden="true" />
-        <img className="pd-m-photo" src="/img/natacion.jpg" alt="Swimmer in a pool lane" width={512} height={288} />
-        <span className="pd-m-tile pd-m-orchid" aria-hidden="true" />
+      <Crumbs items={[["/shop", "Shop"], [`/products/${p.slug}`, p.name]]} />
+      <div className="pdp">
+        <div className="pdp-gallery">
+          <div className="main"><ProductMedia p={p} sizes="(max-width: 1023px) 100vw, 55vw" priority /></div>
+        </div>
+        <div className="pdp-info">
+          <p className="eyebrow">{p.sequence} · {p.role}</p>
+          <h1 className="h1">{p.name}</h1>
+          <p className="lead">{p.shortDescription}</p>
+          <div className="cluster"><StatusBadge p={p} /></div>
+          <PriceLine p={p} />
+          <p>{disclosure(p)}</p>
+          {canBuy(p) ? (
+            <AddButton slug={p.slug} />
+          ) : p.waitlistEnabled && p.status !== "discontinued" ? (
+            <div className="notice" id="notify">
+              <b>{p.status === "waitlist" ? `Join the ${p.name} waitlist` : "Get notified"}</b>
+              <Waitlist topic={p.slug} cta={p.status === "waitlist" ? "Join waitlist" : p.status === "sold_out" ? "Notify me when back" : "Notify me"} source={`pdp-${p.slug}`} />
+            </div>
+          ) : null}
+          <div>
+            <p className="small" style={{ fontWeight: 600, marginBottom: 8 }}>Featured ingredients</p>
+            <ul className="ing" role="list">{p.featuredIngredients.map((i) => <li className="chip" key={i}>{i}</li>)}</ul>
+          </div>
+          <p className="muted">Shipping: free standard shipping on qualifying orders from {money(membership.standardShippingThreshold)}. Returns: unopened products within 15 days. <Link className="inline" href="/legal/returns">Return Policy</Link></p>
+        </div>
       </div>
 
-      <section className="pd-head" aria-labelledby="pd-title">
-        <p className="pd-stand">{p.role}. Formula {step} of {climb.length} in the BDSG routine, made on a goat milk base.</p>
-        <div className="pd-axis">
-          <h1 id="pd-title" className="pd-title"><span><span>{p.name}</span></span></h1>
-          <p className="pd-sub">{p.shortDescription}</p>
-          <div className="pd-buy">
-            <div className="pd-price">
-              {settings.catalogLive && p.retailPrice != null ? <><b>{money(p.retailPrice)}</b>{p.memberPrice != null && <span>{money(p.memberPrice)} for Greatness members</span>}</> : <span className="pd-tbd">Price announced at launch</span>}
-            </div>
-            <p className="pd-disc">{disclosure(p)}</p>
-            {canBuy(p) ? <AddButton slug={p.slug} /> : notify ? (
-              <div id="notify" className="pd-form">
-                <Waitlist topic={p.slug} cta={p.status === "waitlist" ? "Join waitlist" : p.status === "sold_out" ? "Notify me when back" : "Notify me"} source={`pdp-${p.slug}`} />
-              </div>
-            ) : null}
-          </div>
+      <section className="section facts" aria-labelledby="about-h">
+        <h2 id="about-h" className="h2">{p.headline}</h2>
+        <p className="lead" style={{ marginTop: 16, maxWidth: "60ch" }}>{p.longDescription}</p>
+        <div className="acc" data-reveal style={{ marginTop: 32 }}>
+          <details open><summary>How and when to use it</summary><div className="acc-body"><p>{p.whenToUse}</p></div></details>
+          <details><summary>Directions</summary><div className="acc-body"><p>{p.directions ?? PENDING.directions}</p></div></details>
+          <details><summary>Warnings</summary><div className="acc-body"><p>{p.warnings ?? PENDING.warnings}</p></div></details>
+          <details><summary>Full ingredients (INCI)</summary><div className="acc-body"><p>{p.inci ?? PENDING.inci}</p></div></details>
+          <details><summary>Size</summary><div className="acc-body"><p>{p.size ?? PENDING.size}</p></div></details>
         </div>
       </section>
 
-      <section className="pd-fields" aria-label={`About ${p.name}`}>
-        <div className="pd-field pd-plum" data-reveal><h2 className="pd-phrase">{p.headline}</h2><p>{p.longDescription}</p></div>
-        <div className="pd-field pd-haze pd-mirror" data-reveal><h2 className="pd-phrase">When to use it</h2><p>{p.whenToUse}</p></div>
-        <div className="pd-field pd-orchid" data-reveal><h2 className="pd-phrase">What carries it</h2><ul role="list">{p.featuredIngredients.map((i) => <li key={i}>{i}</li>)}</ul></div>
-      </section>
-
-      <section className="pd-label pd-wrap" aria-labelledby="label-h">
-        <h2 id="label-h" className="pd-h2" data-reveal><span>From the tube.</span></h2>
-        <dl className="pd-bands" data-reveal>{label.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
-      </section>
-
       {p.retailPrice != null && p.memberPrice != null && (
-        <section className="pd-plans pd-wrap" aria-labelledby="mem-h">
-          <h2 id="mem-h" className="pd-h2">With or without membership</h2>
-          <div className="pd-steps" data-reveal>
-            <div className="pd-plan pd-haze">
-              <h3>Standard</h3><b>{money(p.retailPrice)}</b>
-              <ul role="list"><li>No membership fee</li><li>Free standard shipping from {money(membership.standardShippingThreshold)}</li></ul>
-              {notify ? <a className="pd-strip" href="#notify">Join the {p.name} waitlist</a> : <Link className="pd-strip" href="/shop">Shop all formulas</Link>}
-            </div>
-            <div className="pd-plan pd-plum">
-              <h3>Greatness member</h3><b>{money(p.memberPrice)}</b>
-              <ul role="list"><li>${membership.initialPrice} first year, then ${membership.renewalPrice}/year, renews automatically</li><li>Free standard shipping from {money(membership.shippingThreshold)} on eligible orders</li><li>Member pricing on every formula</li></ul>
-              <Link className="pd-strip" href="/greatness">See the Greatness Program</Link>
-            </div>
+        <section className="section" aria-labelledby="mem-h">
+          <h2 id="mem-h" className="h2">With or without membership</h2>
+          <div className="table-wrap" tabIndex={0} role="region" aria-labelledby="mem-h" style={{ marginTop: 32, maxWidth: 880 }}>
+            <table className="t">
+              <thead><tr><th scope="col"><span className="sr-only">Item</span></th><th scope="col">Standard</th><th scope="col">Greatness member</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">{p.name} {canBuy(p) ? "price" : "launch price"}</th><td className="num">{money(p.retailPrice)}</td><td className="num">{money(p.memberPrice)}</td></tr>
+                <tr><th scope="row">Free standard shipping</th><td>From {money(membership.standardShippingThreshold)}</td><td>From {money(membership.shippingThreshold)} on eligible orders</td></tr>
+                <tr><th scope="row">Membership fee</th><td>None</td><td>${membership.initialPrice} first year, then ${membership.renewalPrice}/year, renews automatically</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
       )}
 
-      <section className="pd-faq pd-wrap" aria-labelledby="faq-h">
-        <h2 id="faq-h" className="pd-h2">Questions about {p.name}</h2>
-        <div className="pd-tiles" data-reveal>
-          {faqs.map(([q, a]) => <details key={q} name="pd-faq"><summary>{q}</summary><p>{a}</p></details>)}
+      <section className="section facts" aria-labelledby="faq-h">
+        <h2 id="faq-h" className="h2">Questions about {p.name}</h2>
+        <div className="acc" data-reveal style={{ marginTop: 32 }}>
+          {faqs.map(([q, a]) => <details key={q}><summary>{q}</summary><div className="acc-body"><p>{a}</p></div></details>)}
         </div>
       </section>
 
-      <section className="pd-climb pd-wrap" aria-labelledby="climb-h">
-        <h2 id="climb-h" className="pd-h2">Four formulas, one climb.</h2>
-        <ol className="pd-stairs">
-          {climb.map((x, i) => (
-            <li key={x.slug} style={{ ["--h" as string]: `${45 + i * 18}%` }}>
-              <Link href={`/products/${x.slug}`} aria-current={x.slug === p.slug ? "page" : undefined}>
-                <b>{x.name}</b><span>{x.role}</span>
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </section>
+      {related.length > 0 && (
+        <section className="section" aria-labelledby="rel-h">
+          <h2 id="rel-h" className="h2">Related formulas</h2>
+          <div className="products" style={{ marginTop: 32 }}>{related.map((r) => <ProductCard key={r.slug} p={r} />)}</div>
+        </section>
+      )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
     </div>
   );

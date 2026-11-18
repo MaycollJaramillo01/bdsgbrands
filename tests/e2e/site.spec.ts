@@ -17,7 +17,7 @@ test("home → product → waitlist (server-confirmed state)", async ({ page }) 
   await reject(page);
   await page.getByRole("link", { name: "Join the Barrier waitlist" }).click();
   await expect(page).toHaveURL(/\/products\/barrier$/);
-  const form = page.locator("#notify form");
+  const form = page.locator(".pdp-info form");
   await form.getByRole("textbox", { name: /Email/ }).fill("someone@example.com");
   await form.getByRole("checkbox").check();
   await form.getByRole("button", { name: "Join waitlist" }).click();
@@ -27,7 +27,7 @@ test("home → product → waitlist (server-confirmed state)", async ({ page }) 
 test("waitlist shows server errors and focuses the field", async ({ page }) => {
   await page.goto("/products/calm");
   await reject(page);
-  const form = page.locator("#notify form");
+  const form = page.locator(".pdp-info form");
   await form.getByRole("button", { name: "Join waitlist" }).click();
   await expect(form.getByText("Enter an email address")).toBeVisible();
   await expect(form.getByRole("textbox", { name: /Email/ })).toBeFocused();
