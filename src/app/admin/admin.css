@@ -3,7 +3,7 @@
   --adm-hover: #efece4; --adm-ok: #2f6b3f; --adm-warn: #8a5a12; --adm-bad: #9b2c22; --adm-gap: 24px;
 }
 .adm { display: grid; grid-template-columns: 232px 1fr; min-height: 100dvh; background: var(--adm-bg); color: var(--adm-ink); font-size: 15px; }
-.adm a { color: inherit; }
+.adm a:not(.adm-btn-primary) { color: inherit; }
 .adm-side { position: sticky; top: 0; height: 100dvh; display: flex; flex-direction: column; gap: 4px; padding: 20px 12px; border-right: 1px solid var(--adm-line); background: var(--adm-bg); overflow-y: auto; }
 .adm-brand { display: flex; align-items: center; gap: 10px; padding: 4px 10px 20px; font-weight: 700; text-decoration: none; }
 .adm-brand small { font-weight: 500; color: var(--adm-muted); }
