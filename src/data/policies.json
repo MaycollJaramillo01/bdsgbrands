@@ -3,8 +3,8 @@
   "slug": "shipping",
   "title": "Shipping Policy",
   "summary": "Where we ship, what it costs and when it arrives.",
-  "effective": "Not yet in effect",
-  "draft": true,
+  "effective": "[TEST DATA] November 18, 2026",
+  "draft": false,
   "blocks": [
    {
     "t": "h2",
@@ -15,8 +15,8 @@
     "text": "BDSG ships direct-to-consumer orders to addresses in the United States."
    },
    {
-    "t": "tbc",
-    "text": "Confirm the destinations served: all 50 states, or the contiguous 48 only; and whether APO/FPO, PO boxes, Puerto Rico and other U.S. territories are accepted."
+    "t": "p",
+    "text": "[TEST DATA] BDSG ships to all 50 U.S. states, APO/FPO addresses and PO boxes. U.S. territories are not served yet."
    },
    {
     "t": "h2",
@@ -33,16 +33,16 @@
     "label": "Greatness Members:"
    },
    {
-    "t": "tbc",
-    "text": "Confirm the standard rate for orders under the free-shipping threshold (flat fee or carrier-calculated) and whether an expedited option is offered."
+    "t": "p",
+    "text": "[TEST DATA] Orders under the free-shipping threshold ship for a flat $6.95. Expedited shipping (2 business days) is $14.95."
    },
    {
     "t": "h2",
     "text": "3. Processing and delivery times"
    },
    {
-    "t": "tbc",
-    "text": "Confirm order processing time (business days before an order ships), carriers used and estimated transit time."
+    "t": "p",
+    "text": "[TEST DATA] Orders are processed within 1–2 business days and ship by USPS or UPS. Standard transit is 3–7 business days."
    },
    {
     "t": "p",
@@ -82,7 +82,7 @@
    }
   ],
   "sort": 1,
-  "updated_at": "2026-11-18T03:35:02.822048+00:00"
+  "updated_at": "2026-11-18T04:36:49.331247+00:00"
  },
  {
   "slug": "returns",
@@ -322,16 +322,16 @@
   "slug": "membership",
   "title": "Greatness Program Membership Terms",
   "summary": "$55 to join, $35 a year after that, renews automatically. How to cancel and when refunds apply.",
-  "effective": "Not yet in effect",
-  "draft": true,
+  "effective": "[TEST DATA] November 18, 2026",
+  "draft": false,
   "blocks": [
    {
     "t": "p",
     "text": "These terms summarize the Greatness Program membership offered by BDSG Brands, LLC. Section 6 of the Return & Refund Policy governs membership fees and cancellations, and the BDSG Greatness Program & Partner Agreement controls where it applies."
    },
    {
-    "t": "tbc",
-    "text": "BDSG to supply the full Greatness Program & Partner Agreement (wholesale and referral reward rules) so it can be published here or linked."
+    "t": "p",
+    "text": "[TEST DATA] The full Greatness Program & Partner Agreement will be linked here."
    },
    {
     "t": "h2",
@@ -434,7 +434,7 @@
    }
   ],
   "sort": 3,
-  "updated_at": "2026-11-18T03:35:02.822048+00:00"
+  "updated_at": "2026-11-18T04:36:49.619046+00:00"
  },
  {
   "slug": "terms",

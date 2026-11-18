@@ -5,7 +5,7 @@
  "membership_enrollment_live": false,
  "standard_free_shipping_threshold": 70,
  "member_free_shipping_threshold": 50,
- "support_email": "",
+ "support_email": "contact@bdsgbrands.com",
  "privacy_policy_version": "2026-08-21",
  "social": [
   {
@@ -33,5 +33,5 @@
  "membership_renewal_price": 35,
  "membership_discount_max": 10,
  "membership_effective_date": null,
- "updated_at": "2026-11-18T03:35:03.42441+00:00"
+ "updated_at": "2026-11-18T04:35:37.198804+00:00"
 }

@@ -2,6 +2,8 @@
 
 Nothing below has been invented. Each item has a typed placeholder in the code, so it can be filled in without a redesign.
 
+> **Staging currently shows `[TEST DATA]`** (requested for QA) in product size, INCI, directions, warnings, the Renewal image and the TBC parts of the Shipping and Membership policies. A production build (`NEXT_PUBLIC_SITE_ENV=production`) fails while any `[TEST DATA]` remains. Replace each value in `/admin` with BDSG-approved text.
+
 ## Discrepancies between bdsgbrands.com and this site
 
 These are not resolved arbitrarily. Each one is held off by a switch until BDSG decides.

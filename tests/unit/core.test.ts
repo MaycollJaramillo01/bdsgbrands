@@ -126,6 +126,9 @@ describe("LEGAL + compliance gate (runs before every build)", () => {
       expect(text.toLowerCase()).not.toContain(bad);
   });
   it("publishes no unverified testimonials", () => expect(publishableTestimonials()).toEqual([]));
+  it("test data never reaches a production build", () => {
+    if (process.env.NEXT_PUBLIC_SITE_ENV === "production") expect(JSON.stringify([products, legal])).not.toContain("[TEST DATA]");
+  });
 });
 
 describe("admin policy editor", () => {

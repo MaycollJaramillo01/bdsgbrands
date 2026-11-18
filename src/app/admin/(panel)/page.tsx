@@ -9,13 +9,13 @@ export default async function Dashboard() {
   const d = client.database;
   const week = new Date(Date.now() - 7 * 864e5).toISOString();
   const [products, settings, orders, wl, wlWeek, msgs, policies] = await Promise.all([
-    d.from("products").select("id,slug,name,status,retail_price,inci,size,directions,warnings,images,purchase_enabled").order("sort"),
+    d.from("products").select("id,slug,name,status,retail_price,inci,size,directions,warnings,images,image_alt,purchase_enabled").order("sort"),
     d.from("site_settings").select("*").eq("id", 1).single(),
     d.from("orders").select("id,total,subtotal,status,fulfillment_status,created_at").order("created_at", { ascending: false }).limit(200),
     d.from("waitlist").select("id", { count: "exact", head: true }),
     d.from("waitlist").select("id", { count: "exact", head: true }).gte("created_at", week),
     d.from("contact_messages").select("id,name,topic,created_at,status").order("created_at", { ascending: false }).limit(5),
-    d.from("policies").select("slug,title,draft"),
+    d.from("policies").select("slug,title,draft,blocks,effective"),
   ]);
   const P = products.data ?? [], S = settings.data, O = orders.data ?? [];
   const paid = O.filter((o) => o.status === "paid" || o.status === "fulfilled");
@@ -23,11 +23,11 @@ export default async function Dashboard() {
   const revenue = paid.reduce((a, o) => a + Number(o.total ?? o.subtotal ?? 0), 0);
 
   // What still stands between BDSG and its first sale, derived from live data.
-  const missing = (p: (typeof P)[number]) => [!p.inci && "INCI", !p.size && "tamaño", !p.directions && "modo de uso", !p.warnings && "advertencias", !(p.images as unknown[])?.length && "foto"].filter(Boolean);
+  const missing = (p: (typeof P)[number]) => [!p.inci && "INCI", !p.size && "tamaño", !p.directions && "modo de uso", !p.warnings && "advertencias", !(p.images as unknown[])?.length && "foto", JSON.stringify(p).includes("[TEST DATA]") && "reemplazar datos de prueba"].filter(Boolean);
   const todo: [string, string][] = [
     ...(!S?.checkout_live ? [["Checkout apagado: falta confirmar el proveedor de pago.", "/admin/settings"] as [string, string]] : []),
     ...(!S?.support_email ? [["Falta el email de soporte.", "/admin/settings"] as [string, string]] : []),
-    ...(policies.data ?? []).filter((p) => p.draft).map((p) => [`Política en borrador: ${p.title}.`, `/admin/policies/${p.slug}`] as [string, string]),
+    ...(policies.data ?? []).filter((p) => p.draft || JSON.stringify(p).includes("[TEST DATA]")).map((p) => [`${p.draft ? "Política en borrador" : "Política con datos de prueba"}: ${p.title}.`, `/admin/policies/${p.slug}`] as [string, string]),
     ...P.filter((p) => p.status !== "draft" && missing(p).length).map((p) => [`${p.name}: falta ${missing(p).join(", ")}.`, `/admin/products/${p.id}`] as [string, string]),
   ];
 

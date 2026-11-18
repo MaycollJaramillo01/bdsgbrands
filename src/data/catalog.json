@@ -21,10 +21,10 @@
    "Panthenol",
    "Hyaluronic Acid"
   ],
-  "inci": null,
-  "size": null,
-  "directions": null,
-  "warnings": null,
+  "inci": "[TEST DATA] Aqua, Caprae Lac (Goat Milk), Glycerin, Ceramide NP, Hydrolyzed Rice Protein, Panthenol, Sodium Hyaluronate, Phenoxyethanol.",
+  "size": "[TEST DATA] 6 fl oz / 177 mL",
+  "directions": "[TEST DATA] Apply a thin layer to clean skin morning or evening, and after cleansing on training days.",
+  "warnings": "[TEST DATA] For external use only. Avoid contact with eyes. Stop use if irritation occurs.",
   "short_description": "Supports moisture retention with goat milk, Ceramide NP, panthenol and hyaluronic acid.",
   "long_description": "A daily formula built around goat milk, Ceramide NP, panthenol and hyaluronic acid to support moisture retention and everyday barrier care.",
   "when_to_use": "Daily, morning or evening, and after cleansing on training days.",
@@ -43,7 +43,7 @@
   ],
   "provider_price_id": null,
   "sort": 1,
-  "updated_at": "2026-11-18T04:15:56.629721+00:00"
+  "updated_at": "2026-11-18T04:36:48.140562+00:00"
  },
  {
   "id": "bdsg-calm",
@@ -67,10 +67,10 @@
    "Panthenol",
    "Adaptogens"
   ],
-  "inci": null,
-  "size": null,
-  "directions": null,
-  "warnings": null,
+  "inci": "[TEST DATA] Aqua, Caprae Lac (Goat Milk), Beta-Glucan, Helianthus Annuus Seed Oil, Panthenol, Withania Somnifera Root Extract, Phenoxyethanol.",
+  "size": "[TEST DATA] 6 fl oz / 177 mL",
+  "directions": "[TEST DATA] Smooth over skin that feels dry or tight, as often as needed.",
+  "warnings": "[TEST DATA] For external use only. Avoid contact with eyes. Stop use if irritation occurs.",
   "short_description": "Beta-glucan, botanical oils and panthenol on goat milk for skin that feels dry or tight.",
   "long_description": "A goat milk-based formula featuring beta-glucan, botanical oils, panthenol and adaptogens for skin that feels dry, tight or overexposed after long days and hard sessions.",
   "when_to_use": "After sun, wind, cold or a long day, whenever skin feels tight.",
@@ -89,7 +89,7 @@
   ],
   "provider_price_id": null,
   "sort": 2,
-  "updated_at": "2026-11-17T00:00:00+00:00"
+  "updated_at": "2026-11-18T04:36:48.717464+00:00"
  },
  {
   "id": "bdsg-renewal",
@@ -113,23 +113,29 @@
    "Aloe",
    "Papain Enzyme"
   ],
-  "inci": null,
-  "size": null,
-  "directions": null,
-  "warnings": null,
+  "inci": "[TEST DATA] Aqua, Niacinamide, Mel (Honey), Propolis Extract, Aloe Barbadensis Leaf Juice, Papain, Phenoxyethanol.",
+  "size": "[TEST DATA] 4 fl oz / 118 mL",
+  "directions": "[TEST DATA] Use 2–3 times a week on clean skin. Rinse thoroughly.",
+  "warnings": "[TEST DATA] For external use only. Avoid contact with eyes. Patch test before first use.",
   "short_description": "Papain enzyme and niacinamide for surface renewal, with honey and aloe for comfort.",
   "long_description": "Papain enzyme and niacinamide support surface renewal while goat milk, honey and aloe help maintain hydration and skin comfort.",
   "when_to_use": "When skin texture needs a reset between hard training weeks.",
   "seo_title": "Renewal — Niacinamide & Papain Enzyme Formula",
   "seo_description": "BDSG Renewal: niacinamide, papain enzyme, honey, propolis and aloe. In development. Get notified at launch.",
-  "images": [],
-  "image_alt": "",
+  "images": [
+   {
+    "src": "/img/pareja.jpg",
+    "width": 512,
+    "height": 288
+   }
+  ],
+  "image_alt": "[TEST DATA] Two people walking outdoors (placeholder image, not the Renewal product)",
   "related_products": [
    "barrier"
   ],
   "provider_price_id": null,
   "sort": 3,
-  "updated_at": "2026-11-17T00:00:00+00:00"
+  "updated_at": "2026-11-18T04:36:48.879349+00:00"
  },
  {
   "id": "bdsg-recovery",
@@ -153,10 +159,10 @@
    "Ginger",
    "Copaiba"
   ],
-  "inci": null,
-  "size": null,
-  "directions": null,
-  "warnings": null,
+  "inci": "[TEST DATA] Aqua, Caprae Lac (Goat Milk), Magnesium PCA, Menthol, Zingiber Officinale Root Extract, Copaifera Officinalis Resin, Phenoxyethanol.",
+  "size": "[TEST DATA] 4 fl oz / 118 mL",
+  "directions": "[TEST DATA] Massage into skin after training, once you've showered.",
+  "warnings": "[TEST DATA] For external use only. Contains menthol: avoid eyes, mucous membranes and broken skin.",
   "short_description": "Magnesium PCA, menthol and ginger on goat milk for a cool, comfortable finish.",
   "long_description": "Goat milk, magnesium PCA, menthol, ginger and copaiba bring a cool, comfortable finish to post-activity skin care.",
   "when_to_use": "Right after training, once you've showered.",
@@ -175,6 +181,6 @@
   ],
   "provider_price_id": null,
   "sort": 4,
-  "updated_at": "2026-11-17T00:00:00+00:00"
+  "updated_at": "2026-11-18T04:36:49.036453+00:00"
  }
 ]
